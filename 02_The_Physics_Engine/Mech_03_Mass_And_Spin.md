@@ -12,3 +12,43 @@ The masses of the elementary particles (leptons and quarks) are not random. They
 ## The Formula
 $m \propto \cos(\theta_{E8})$
 (Simplified representation of the geometric coupling).
+
+# Mechanism 03 — Mass and Spin
+
+## Core Claim
+Mass and spin originate from the projection of E8 root vectors onto the 4D brane.
+
+---
+
+## Mass (Yukawa Geometry)
+In the Bulk:
+- all roots have equal length
+- no mass hierarchy exists
+
+Mass arises via projection angle:
+
+
+m_f ∝ cos(θ_f)
+
+
+Where `θ_f` is the angle between the 8D root and the 4D slice.
+
+Golden-ratio slicing produces exponential suppression across generations.
+
+---
+
+## Spin
+Spinors encode orientation + phase. They are the atomic unit of information.
+
+
+Spinor = √Vector
+
+
+Spin-2 (graviton) arises from phason-phonon coupling in the quasicrystal.
+
+---
+
+## Consequence
+The hierarchy problem collapses to trigonometry.
+
+The Standard Model constants are geometric, not tuned.
