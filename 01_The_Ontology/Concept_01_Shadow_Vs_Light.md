@@ -11,3 +11,31 @@ Reality is not the film, nor the screen, but the light passing through the trans
 
 ## The Architect's Perspective
 What we call "solid" is merely a region of high-density information. By understanding the projector, we move from being passive observers of the movie to active participants in the edit.
+
+
+# Concept 01 — Shadow vs Light
+
+## Core Claim
+Physical reality is a projection (Shadow) of a higher-dimensional geometric object (Light).
+
+---
+
+## Light — The Bulk
+- 11D static geometry
+- Finite, complete, aperiodic
+- Contains all states simultaneously
+- No “time” or “motion” internally
+
+---
+
+## Shadow — The Brane
+- 4D spacetime
+- Contains measurements, causality, and dynamics
+- Appears to evolve frame-by-frame
+- Dependent on observation
+
+---
+
+## The Projection
+The act that relates Light and Shadow is “cut-and-project”:
+

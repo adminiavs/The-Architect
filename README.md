@@ -4,6 +4,8 @@ Welcome to **The Architect** — a unified framework linking ontology, physics, 
 
 This repository documents the structure of the Model, its implications, and its testable predictions.
 
+![The Architect](./Examples/TheArchitect_01.jpg)
+
 ---
 
 ## Repository Structure
