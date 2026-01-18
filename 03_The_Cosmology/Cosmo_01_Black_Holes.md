@@ -1,16 +1,3 @@
-# Cosmo 01: Black Holes (The Hard Drives of Reality)
-
-## Data Compression
-A Black Hole is not a "hole," but the maximum informational density achievable in a region of space. It is a compressed "hard drive" of the universe's state.
-
-## The Holographic Principle
-The information of a 3D volume (the interior) is encoded on its 2D surface (the event horizon).
-- **Entropy = Area**: The Bekenstein-Hawking entropy formula ($S \propto A$) proves that reality is fundamentally two-dimensional information projected into 3D.
-- **Persistence**: Information is never lost; it is merely scrambled into a highly efficient holographic format.
-
-## Function
-Black holes act as the "backup system" for the cosmic lattice, ensuring that the total information content of the universe remains constant.
-
 # Cosmology 01 — Black Holes (The Hard Drives of Reality)
 
 ## Core Principle
@@ -21,9 +8,7 @@ Black holes do not delete information. They compress it into holographic boundar
 ## 1. Entropy as Information
 Black hole entropy counts bits on the horizon:
 
-
 S = A / 4
-
 
 Where:
 - `S` = entropy
@@ -42,16 +27,11 @@ The event horizon behaves as a write-once memory surface.
 
 Scaling:
 
-
 t_Page ~ S_BH
-
 
 not
 
-
 t_Page ~ M^3
-
-
 
 This distinguishes holographic unitarity from semiclassical evaporation.
 
@@ -87,6 +67,13 @@ They are not endpoints; they are modules.
 
 ---
 
+## 6. Data Compression
+A Black Hole is not a "hole," but the maximum informational density achievable in a region of space. It is a compressed "hard drive" of the universe's state.
+
+The information of a 3D volume (the interior) is encoded on its 2D surface (the event horizon). Information is never lost; it is merely scrambled into a highly efficient holographic format.
+
+---
+
 ## Status
 Consistent with:
 - Holographic Principle
@@ -97,3 +84,4 @@ Consistent with:
 To be tested via:
 - Ringdown echoes (Section 03_The_Golden_Echo)
 
+---

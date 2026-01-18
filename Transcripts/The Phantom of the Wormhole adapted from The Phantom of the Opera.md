@@ -1,0 +1,7 @@
+# The Phantom of the Wormhole adapted from The Phantom of the Opera
+
+**Video ID:** WoJepZ4TYMA
+
+## Transcript
+
+think of uh how black holes and their Photon spheres or white holes are uh in this Perpetual uh information Embrace um that is connected by light so basically they're just singing an eternal [Music] duet in sleep it sang to me in dreams it came that voice which call to me and speaks my name and to why dream [Music] again [Music] inside I sing once again with me our Strange doet my power over you grow stronger yet and though you turn from me to glance behind the sun of the Wormhole is here inside my [Music] mind some who have seen the truth draw back in fear it is the mask they wear but the world they he there spirit and my voice in curvature com the B of the Opera is there [Music] inside in all your fantasies you always knew that angular frequency is what composes you and in this [Applause] lightcap where night is blind the F the warm hole is there inside [Music] sing my angel of [Music] music sing for me sing for [Music] me sing my angel of [Music] music sing for me [Music] I have come here of sweet music thrown to this kingom where all pay homage to music [Music] music have come here oh on purpose and not alone since the moment I first heard you sing I have needed you with me to serve me to sing our [Music] music our mus night heightens each sensation [Music] Darkness

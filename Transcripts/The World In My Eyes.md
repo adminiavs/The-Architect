@@ -1,0 +1,7 @@
+# The World In My Eyes
+
+**Video ID:** rpcuxiDu-po
+
+## Transcript
+
+Let me take you on a trip, around the world and back And you won't have to move, you just sit still And let your body do the walking And let my hand do the talking Let me show you the world in my eyes I'll take you to the highest mountain, to the dance of the deepest sea And we won't need a map, believe me Now let my body do the moving And let my hand do the soothing Let me show you the world in my eyes That's all there is, nothing more than you can feel now, that's all there is Let me take you on a ship, on a long long trip Your lips close to my lips All the islands in the ocean, all the hills in the ocean Let me show you the world in my eyes That's all there is, nothing more than you can see now, that's all there is Believe me Let me show you the world in my eyes Let me show you the world in my eyes Let me show you the world in my eyes Let me show you the world in my eyes Let me show you the world in my eyes Let me show you the world in my eyes That song's fun for me because I have motion blindness, which is really bad Because I have motion blindness, which is what makes it easier for me to draw those drawings that you see Because I see things as individual, discrete picture frames, like a flip book And when somebody has motion blindness, that's what it does So I wish everybody could see it because it makes patterns stand out in a much more obvious way Anyway, have a great Friday guys

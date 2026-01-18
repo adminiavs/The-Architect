@@ -1,18 +1,3 @@
-# Bio 01: Microtubules (The Quantum Antenna)
-
-## Beyond the Chemical Brain
-Standard neuroscience views the brain as a classical computer using chemical signals. The Architect's view posits that the brain is a **quantum receiver**.
-
-## The Hardware
-Microtubules are protein structures within neurons that possess:
-- **High Symmetry**: Their cylindrical geometry allows for coherent vibrations.
-- **Water Cavity**: The interior of the microtubule creates a protected "quantum void" where decoherence is delayed.
-
-## Function
-Microtubules act as antennas, tuning into the fundamental vibrations of the E8 lattice. Consciousness is not *produced* by the brain; it is *filtered* through it.
-破
-
-
 # Biology 01 — Microtubules (The Quantum Antenna)
 
 ## Core Principle
@@ -59,9 +44,16 @@ This creates a multi-scale computation stack.
 ---
 
 ## 4. Cosmological Interface
-In the architectural model, microtubules serve as biological entry points into the lattice’s coherence layer.
+In the architectural model, microtubules serve as biological entry points into the lattice's coherence layer.
 
-They do not “generate” consciousness; they allow coupling to the global coherence field.
+They do not "generate" consciousness; they allow coupling to the global coherence field.
+
+---
+
+## 5. Beyond the Chemical Brain
+Standard neuroscience views the brain as a classical computer using chemical signals. The Architect's view posits that the brain is a **quantum receiver**.
+
+Microtubules act as antennas, tuning into the fundamental vibrations of the E8 lattice. Consciousness is not *produced* by the brain; it is *filtered* through it.
 
 ---
 
@@ -76,3 +68,5 @@ To test via:
 - THz spectroscopy
 - entanglement witnesses
 - anesthetic perturbation protocols
+
+---

@@ -1,14 +1,5 @@
 # Cosmic Boundary Conditions
 
-## The Edge of the Gem
-
-- What defines the "surface" of the E8 crystal?
-- Is there an "Outside" to the informational bulk?
-破
-
-
-# Cosmic Boundary Conditions
-
 The Architect model uses a Block Universe with fixed initial and final boundary conditions.
 
 Open questions:
@@ -43,3 +34,12 @@ Unknown: Does the universe complete cancellation at zero entropy, or saturate at
 Observation: Radion inflation sets the scalar tilt n_s.
 
 Unknown: Exact number of e-folds set by boundary entropy bound.
+
+---
+
+## 6. The Edge of the Gem
+What defines the "surface" of the E8 crystal?
+
+Is there an "Outside" to the informational bulk?
+
+---

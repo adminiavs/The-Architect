@@ -1,12 +1,3 @@
-# Operator Limits
-
-## The Boundaries of Agency
-
-- What are the physical limits of constructive interference (manifestation)?
-- Does the "Block Universe" allow for actual choice, or only the perception of it?
-破
-
-
 # Operator Limits (Constraints of the Observer)
 
 Conscious traversal through a static lattice raises constraints on what can be experienced.
@@ -43,3 +34,12 @@ Unknown: What is the delay between superposition resolution and conscious awaren
 
 ## 5. Cognitive Degrees of Freedom
 Question: Does consciousness scale with microtubule count, network topology, or coherence length?
+
+---
+
+## 6. The Boundaries of Agency
+What are the physical limits of constructive interference (manifestation)?
+
+Does the "Block Universe" allow for actual choice, or only the perception of it?
+
+---

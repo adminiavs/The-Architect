@@ -1,0 +1,7 @@
+# Come Out And Play. Offspring
+
+**Video ID:** sY1Zu2XoLy4
+
+## Transcript
+
+yeah this is Offspring come out and play you got to keep them separated like a lest fashion like a spreading disease the kids stepping all the way to the class room gting weapons with the greatest of they can't say down and if they catch a steep of P they going to B it up B it up up bash it up bash it up hey man you're talking back to me treat meong got to keep them separated hey man you're disrespecting me treat me wrong you got to keep them separated hey hey don't no mind you're under 18 you won't be doing any time i'm hey hey come out and play the time siren it's already too late in the M jail one gu wasted and the other's a waste they goes down the same as a thousand before the one get sm and always running the store and never in his free BS and hate he going to tire R TI own rope TI Ro hey you talk this back to me treat me WR you got to keep separated man you're disrespecting me treat me wrong you got to keep them separated hey hey don't pay no M you're under 18 you won't be doing any time i'm he hey come out and play same as thousand before the get his know score I never his fre of death and violence and ha he going to TI R TI R TI hey make you talking back to me CH me you got to keep them separated hey man you disrespecting me treat me wrong you got to keep it separated hey he don't noine you're under 18 you won't be come out and play that's it's chillo charlies's in the 90s all the time

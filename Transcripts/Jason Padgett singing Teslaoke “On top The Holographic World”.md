@@ -1,0 +1,7 @@
+# Jason Padgett singing Teslaoke “On top The Holographic World”
+
+**Video ID:** ml0cfM8YhVU
+
+## Transcript
+
+Such a feeling's coming over me. There is wonder in everything I see. Not a cloud in the sky, got the sun in my eyes, and I won't be surprised if it's a dream. Everything I want the world to be is now coming true holographically. And the reason is clear, it's because you are here. You're the nearest thing to heaven that I've seen. I'm on the top of the world lookin' down on creation, and the only explanation I can find is the love that I've found ever since he's been around. He has put me at the top of the world. Something in the wind has learned my name, and it's telling me that things are not the same. In the leaves on the trees to the holographic breeze is a pleasing sense of happiness for me. There is only one wish on my mind. When this day is through, I hope that I will find that tomorrow will be just the same through all me. All I need will be mine since he is here. I'm on the top of the world lookin' down on creation, and the only explanation I can find is the love that I've found ever since he's been around. He has put me at the top of the world. I'm on the top of the world lookin' down on creation, and the only explanation I can find is the love that I've found ever since he's been around. He has put me at the top of the world.

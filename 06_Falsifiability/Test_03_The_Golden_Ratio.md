@@ -1,18 +1,3 @@
-# Test 03: The Golden Ratio (Phason Modes in Black Holes)
-
-## The Theory
-Quasicrystals (like the projected E8 lattice) exhibit unique degrees of freedom called **Phasons**. These are "flips" in the lattice that do not exist in regular crystals.
-
-## The Test
-Analyze the ringdown of merging Black Holes (Gravitational Waves).
-- **Prediction**: The "Quasinormal Modes" (the way a black hole "rings" after a merger) will show frequency ratios corresponding to the Golden Ratio ($\phi$) and its powers.
-- **Phason Signature**: Small, discrete "jumps" in the gravitational wave phase during the ringdown, representing phason flips in the holographic screen of the event horizon.
-
-## Metric for Correctness
-Mechanically verifiable frequency ratios in LIGO/Virgo/KAGRA data matching $\phi \approx 1.618$.
-破
-
-
 # Test 03 — The Golden Ratio Test (Phason Echo in Black Hole Ringdown)
 
 ## Objective
@@ -84,5 +69,45 @@ Detection implies:
 
 ---
 
+## The Theory
+Quasicrystals (like the projected E8 lattice) exhibit unique degrees of freedom called **Phasons**. These are "flips" in the lattice that do not exist in regular crystals.
+
+Analyzing the ringdown of merging Black Holes (Gravitational Waves):
+- **Prediction**: The "Quasinormal Modes" (the way a black hole "rings" after a merger) will show frequency ratios corresponding to the Golden Ratio (φ) and its powers
+- **Phason Signature**: Small, discrete "jumps" in the gravitational wave phase during the ringdown, representing phason flips in the holographic screen of the event horizon
+
+---
+
+## Mathematical Verification: The Spectral Identity
+
+### The S(α) Function
+Define the spectral sum over E8 roots:
+
+S(α) = Σ cos(α · ||π_H(v)||²)
+
+Where:
+- R_8 = the 240 roots of E8
+- π_H = Coxeter projection onto H4-invariant 4D subspace
+- ||π_H(v)||² = squared norm of projected root
+
+### The Golden Identity
+**Conjecture:** There exists α* related to φ such that:
+
+S(α*) = 160
+
+**Numerical Result:** The crossing occurs at α* ≈ 0.5924, with α*/(π/3φ) ≈ 0.915.
+
+### Verification Script
+See: `Examples/verify_e8_koide.py`
+
+Run with:
+```bash
+python3 Examples/verify_e8_koide.py
+```
+
+---
+
 ## Status (Current Universe)
 Preliminary analyses find weak hints of echoes but inconclusive. Upcoming detectors increase confidence dramatically.
+
+---

@@ -1,18 +1,3 @@
-# Mech 03: Mass and Spin (The Yukawa/Cosine Map)
-
-## The Origin of Mass
-Mass is not an intrinsic property but a coupling constant between a particle and the underlying lattice.
-
-## The Cosine Map
-The masses of the elementary particles (leptons and quarks) are not random. They follow a specific "Cosine Map" derived from the angles of the E8 lattice.
-
-- **Yukawa Coupling**: The Higgs field's interaction with fermions is governed by the geometric projection of the E8 symmetry.
-- **Spin**: Spin is the internal rotation of information within the lattice cell, quantized by the geometry of the crystal.
-破
-## The Formula
-$m \propto \cos(\theta_{E8})$
-(Simplified representation of the geometric coupling).
-
 # Mechanism 03 — Mass and Spin
 
 ## Core Claim
@@ -27,9 +12,7 @@ In the Bulk:
 
 Mass arises via projection angle:
 
-
 m_f ∝ cos(θ_f)
-
 
 Where `θ_f` is the angle between the 8D root and the 4D slice.
 
@@ -40,9 +23,7 @@ Golden-ratio slicing produces exponential suppression across generations.
 ## Spin
 Spinors encode orientation + phase. They are the atomic unit of information.
 
-
 Spinor = √Vector
-
 
 Spin-2 (graviton) arises from phason-phonon coupling in the quasicrystal.
 
@@ -52,3 +33,13 @@ Spin-2 (graviton) arises from phason-phonon coupling in the quasicrystal.
 The hierarchy problem collapses to trigonometry.
 
 The Standard Model constants are geometric, not tuned.
+
+---
+
+## The Cosine Map
+The masses of the elementary particles (leptons and quarks) are not random. They follow a specific Cosine Map derived from the angles of the E8 lattice:
+
+- **Yukawa Coupling**: The Higgs field's interaction with fermions is governed by the geometric projection of the E8 symmetry
+- **Spin**: Spin is the internal rotation of information within the lattice cell, quantized by the geometry of the crystal
+
+---

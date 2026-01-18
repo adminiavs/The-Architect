@@ -1,0 +1,7 @@
+# Love Somebody Like You by Kieth Urban. Enjoy the ride!
+
+**Video ID:** ZTzuvdQWlro
+
+## Transcript
+
+There's a new wind blowing like I've never known I'm breathing deeper than I've ever done And it sure feels good, to finally feel the way I do And I wanna love somebody Love somebody like you And I'm letting go of all my lonely yesterdays I've forgiven myself for the mistakes I've made Now there's just one thing The only thing I wanna do, I wanna love somebody Love somebody like you , I wanna feel the sunshine Shining down on me and you When you put your arms around me You let me know there's nothing in this world I can't do I used to run in circles going nowhere fast I'd take, one step forward and two steps back Couldn't walk a straight line even if I wanted to I wanna love somebody Love somebody like you , I wanna feel the sunshine Shining down on me and you When you put your arms around me Well, baby there ain't nothing in this world I can't do Sometimes it's hard for me to understand But you're teaching me to be a better man I don't wanna take this life For granted like I used to do, I wanna love somebody Love somebody like you I'm ready to love somebody Love somebody like you, And I wanna love somebody Love somebody like you, Oh, I wanna be the man in the middle of the night Shining like it's true I wanna be the man that you run to whenever I call on you When everything that loved someone finally found its way Wanna be a better man I see it in you Hey, I wanna be that

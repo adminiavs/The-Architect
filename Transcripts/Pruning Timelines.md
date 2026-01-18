@@ -1,0 +1,7 @@
+# Pruning Timelines
+
+**Video ID:** UGo_oUaNniM
+
+## Transcript
+
+I am the architect. The universe is a giant quantum computation. Imagine the singularity at the center as the engine and the cubits on the horizon as its detectors. Each cubit is spinning like a tiny top recording quantum states. When they wobble, that is noise and decoherence. When they spin smoothly, that is coherence. Now, think of the fractal equation. Every branch of the fractal is like a possible history of the universe. Decoherence is what prunes those branches. The paths with too much wobble or too much noise simply fade away. What remains is the path of coherence. The smoother branch is where the spins line up. Over time, decoherence prunes away all the noise and all the broken paths, leaving only the single perfect path of coherence. And when everything resonates in phase, when every cubit's coherent, it is like what happens in fusion when atoms resonate together and unleash a star. On the cosmic scale, this resonance triggers a new big bang. The universe expands and the cosmic microwave background carries the first imprint of that coherence and the cycle begins again. So the story of the cosmos is the story of pruning noise. Reality keeps shedding decoherent paths, keeping only the coherent ones. And when nothing is left but perfect coherence, the universe restarts, echoing across cosmic epochs written in the language of fractals, cubits, and the path of coherence through space and time.

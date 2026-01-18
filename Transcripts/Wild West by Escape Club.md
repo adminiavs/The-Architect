@@ -1,0 +1,7 @@
+# Wild West by Escape Club
+
+**Video ID:** Lt4a32dng7w
+
+## Transcript
+
+[Music] 47 dead be living in a back Street Northeast West South all in the same house sitting in the back waiting for the big boom I'm in the bed you're waiting for my baby she's so mean but I don't care I love her eyes and a wild wild hair Dan to theet that we love best for the living in the wild wild west the wild wild west wild w share all the way talking to the DJs 47 heartbeats beating like a drum got to live it up Live It Up Ronnie's got a new she's so mean I don't care I love her eyes and a wild wild dance to the that we love best for theing in the wild wild west the Wild Wild West [Music] [Applause] [Music] I put your flags in the air and March them up and down you can live it up live it up all over the town and turn to the left turn to the right I don't care as long she comes tonight she's so mean but I don't care I love her eyes and a wild Wild Hair dance to the that we love best for the night living in the wild wild west the wild wild west wild [Music] wildest West [Music] this's called the Mur tonight rock until day I give me more Escape Club to [Music] rock all the 9s living in the80s screaming in the back room waiting for the big Bo give me give me wildest give me give me safe sex give me love give me love give me time to live it up she's so mean but I don't care I love her eyes and a wild Wild Hair dance to the that we love best for the night living in the wild wild west the Wild Wild West the W wild west wild west wild west

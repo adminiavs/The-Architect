@@ -1,0 +1,7 @@
+# Time Travel to the Past by Going to the Future
+
+**Video ID:** r3ZObiDmeZA
+
+## Transcript
+
+this is why you need to know about Quantum time travel imagine revisiting history but with a Twist in the vast expanse of our universe there's a mindboggling truth the ways particles can be rearranged are finite sounds crazy right but this means our universe's history isn't infinite after countless Big Bangs patterns repeat offering Endless Possibilities now time isn't just a straight line thanks to relativity changing your speed can stretch and slow down time this is time dilation if if we move fast enough we could slow time to such an extent that we'd see history repeat imagine fast forwarding through time just to revisit the past picture this you jump forward in time and history unfolds again you could see pivotal moments like your parents meeting without causing paradoxes Quantum information holography lets us Ponder these mind-bending ideas merging quantum mechanics and time dilation while rooted in theory it suggests time travel might be possible we can't change the past but we could revisit it in new and unexpected ways so curious minds keep dreaming our journey into the infinite is just beginning

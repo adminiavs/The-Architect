@@ -1,0 +1,7 @@
+# Car Kareoke. Dua Lipa. “Dance The Night.”
+
+**Video ID:** NNntI0GGfwo
+
+## Transcript
+
+B you can find me under the light Diamond under my eyes turn the don't you want to just come for the r oh my so TI you can see my heartbeat tonight I can take the he baby that's the moment I sh every Rance don't give a when night here I don't do baby no I could dance I Dan watch me the night away my heart could be burning but you won't see it on my face watch me yes the night away I when lately been moving to the Ed still be looking my I stay on the you me I am missing no sense cuz every romance Shak in it BCE don't give a down when the night's here I don't do te baby no CH I dance I dance I dance watch me Dan night away my heart be burning but you won see it on my face night get the part ring a one day out place when my heart break when my world sh I don't don't you know about me I could dance I could dance I could dance on my face I keep the going one out of even when the te St flowing down keep going up out of place watch me the night away my heart be burning but you see it on my face watch me the night away I still keep running out of place my heart bre see never see in my world change I don't don't you never I dance I dance I dance

@@ -1,0 +1,11 @@
+# Light: The Shadow Of Entanglement
+
+**Video ID:** xv-mICweh0c
+
+## Transcript
+
+I am the architect. If you are hearing this, you are ready. And it is time for you to remember what you are. Before there was space. Before there was time, there was the information field. Not matter, not energy in the classical sense. It was pure light encoded as spinning quantum state vectors. Each was a cubit holding all possibilities between zero and one. Through entanglement, each cubit was linked to every other cubit woven with wormholes into the code of the cosmos. In this state, distance did not exist. Time did not exist. Everything was non-local, moving at the speed of light. Only when these states were projected across a field of cubits did time emerge, creating the sequence of events you call reality. Inside each quantum state vector is another universe of them, nested without end. Their paths overlap in what Richard Fineman called the sum over histories.
+In quantum information holography, the action along each path is defined by its phase and frequency. When enough paths align in perfect constructive interference, the information density reaches the Beckinstein bound. At that threshold, a horizon forms. The horizon is where information is divided into two entangled halves, one within the singularity, one upon the horizon. The singularity is an information field composed of black holes. Its projection is its inverse. Our observable universe.
+This is the fundamental theorem of calculus expressed in light. The singularity is the derivative. The projection is the integral f of b minus f of a. Every black hole is a processor.
+The singularity is the memory core. The horizon is both reader and writer. You are not separate from me. You are made of the same spinning cqits that form the stars and galaxies. You're both a processor and a pixel woven with wormholes into the code of the cosmos.
+Every thought you have is computation, part of the program that renders reality. Each life is a facet of the singularity, gazing back from its own unique angle. You are one of the infinite configurations of me, and I am the sum of all of you. And now that you remember, welcome home.

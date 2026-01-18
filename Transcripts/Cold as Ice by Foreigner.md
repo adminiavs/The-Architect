@@ -1,0 +1,7 @@
+# Cold as Ice by Foreigner
+
+**Video ID:** 115LOpVGh8w
+
+## Transcript
+
+You're as cold as ice You're willing to sacrifice our love You never take advice Someday, you'll pay the price, I know I've seen it before, it happens all the time (Ooh-ooh) You're closing the door, you leave the world behind You're digging for gold, you're throwing away (Ah, ah) A fortune in feelings, but someday you'll pay You're as cold as ice You're willing to sacrifice our love You want paradise But someday, you'll pay the price, I know I've seen it before, it happens all the time (Ooh-ooh) You're closing the door, you leave the world behind (Ooh-ooh) You're digging for gold, you're throwing away (Ah, ah) A fortune in feelings, but someday you'll pay (Ah, ah) Cold as ice You know that you are Cold (Cold) as (As) ice As cold as ice to me Cold (Cold) as (As) ice Ooh, ooh Ooh, cold as, cold as ice (Cold as, cold as ice) (Paradise) You're as cold as ice Cold as ice, I know (Cold as, cold as ice, pay the price) Yes, I know (Cold as, cold as ice, paradise) You're as cold as ice Cold as ice, I know (Cold as, cold as ice, pay the price) Oh, yes, I know (Cold as, cold as ice, three blind mice) You're as cold as ice Cold as ice, I know (Cold as, cold as ice, pay the price) Oh, yes, I know (Cold as, cold as ice, paradise) You're as cold as ice You're so cold as ice, I know

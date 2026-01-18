@@ -1,25 +1,9 @@
-# Mech 02: The Spectral Action (The One Equation)
-
-## The Unified Field
-In noncommutative geometry (Alain Connes), the "Spectral Action" provides a single principle that derives the entire Standard Model of particle physics plus gravity.
-
-## The Equation
-The Spectral Action Principle states that the physical action depends only on the spectrum of the Dirac operator $D$ on a noncommutative space.
-
-$$\text{Trace}(f(D/\Lambda))$$
-
-## Significance
-This formula encapsulates all forces and particles as "vibrations" or "notes" within the geometry of the E8 crystal. There is no distinction between the container (space) and the contained (matter).
-
-
 # Mechanism 02 — The Spectral Action
 
 ## Core Claim
 All low-energy physics emerges from the spectral action:
 
-
 S = Tr( f(D/Λ) )
-
 
 Where:
 - `D` = Dirac operator on the noncommutative geometry
@@ -47,3 +31,10 @@ The Spectral Action is not a Lagrangian.
 It is a compression of the geometry into an executable form.
 
 Physics is the shadow of a single operator.
+
+---
+
+## The Unified Field
+In noncommutative geometry (Alain Connes), the Spectral Action provides a single principle that derives the entire Standard Model of particle physics plus gravity. This formula encapsulates all forces and particles as "vibrations" within the geometry of the E8 crystal. There is no distinction between the container (space) and the contained (matter).
+
+---

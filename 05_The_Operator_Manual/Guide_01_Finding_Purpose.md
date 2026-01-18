@@ -1,18 +1,3 @@
-# Guide 01: Finding Purpose (Resonance and Constructive Interference)
-
-## The Physics of Meaning
-Purpose is not a philosophical abstract; it is a state of **Constructive Interference** between your local consciousness and the global universal frequency.
-
-## How to Find It
-1. **Identify Resonance**: Notice the activities that make you lose track of time (the "Flow State"). This is where your internal "antenna" (Microtubules) is most aligned with the E8 lattice.
-2. **Amplify the Signal**: Focus your intention on these resonant patterns.
-3. **Avoid Dissonance**: Destructive interference (stress, lack of purpose) occurs when your actions conflict with the geometric necessity of your local environment.
-
-## The Rule
-If it resonates, it is part of the Architect's design for your specific coordinate in the Block Universe.
-破
-
-
 # Operator Guide 01 — Finding Purpose (Resonance & Constructive Interference)
 
 ## Core Principle
@@ -21,7 +6,7 @@ Purpose is not metaphysical; it is a physical alignment between the Operator and
 ---
 
 ## 1. Resonance as Purpose
-Resonance occurs when an Operator’s actions, internal states, and external environment align in phase.
+Resonance occurs when an Operator's actions, internal states, and external environment align in phase.
 
 In the architectural model:
 - resonance = constructive interference
@@ -81,5 +66,19 @@ This is a search algorithm over the configuration space.
 
 ---
 
+## 6. The Flow State
+Notice the activities that make you lose track of time (the "Flow State"). This is where your internal "antenna" (Microtubules) is most aligned with the E8 lattice.
+
+If it resonates, it is part of the Architect's design for your specific coordinate in the Block Universe.
+
+---
+
+## The Rule
+If an activity gives you energy and makes you feel "amplified," that is the universe telling you: *"This is your vector. Proceed."*
+
+---
+
 ## Status
 Purpose = information dynamics, not philosophy.
+
+---

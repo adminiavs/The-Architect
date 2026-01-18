@@ -1,14 +1,5 @@
 # Biological Interfaces
 
-## The Hardware-Software Bridge
-
-- How does the non-local information of the lattice interact with local electrochemical signals in the brain?
-- Is there a "quantum DNA" encoding the receiver's frequency?
-破
-
-
-# Biological Interfaces
-
 The Architect model predicts that biology functions as a multi-scale interface between quantum coherence and classical computation.
 
 Open problems:
@@ -47,3 +38,12 @@ Candidates: Dendritic spines, microtubules, synaptic vesicles.
 Proposed Mechanism: Biological systems may couple to the E8 projection through resonance frequencies rather than forces.
 
 Open variable: Frequency domain not yet mapped.
+
+---
+
+## 6. The Hardware-Software Bridge
+How does the non-local information of the lattice interact with local electrochemical signals in the brain?
+
+Is there a "quantum DNA" encoding the receiver's frequency?
+
+---

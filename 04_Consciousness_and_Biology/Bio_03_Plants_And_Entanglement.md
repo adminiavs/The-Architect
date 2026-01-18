@@ -1,16 +1,3 @@
-# Bio 03: Plants and Entanglement (Nature as the Server)
-
-## The Intelligent Web
-Life is not an accident of chemistry, but the "frontend" of the universal server. Plants, in particular, utilize quantum entanglement for survival.
-
-## Examples
-- **Photosynthesis**: Plants use quantum "random walks" to transfer energy with near-100% efficiency.
-- **Mycelial Networks**: The "Wood Wide Web" functions as a biological entanglement network, allowing for non-local information transfer across ecosystems.
-
-## The Server Analogy
-If the E8 crystal is the "Server," life forms are "Clients." Nature is the interface through which the lattice explores its own potential for complexity and beauty.
-破
-
 # Biology 03 — Plants & Entanglement (Nature as the Server)
 
 ## Core Principle
@@ -66,13 +53,21 @@ Plants maintain local coherence, reducing biological entropy and contributing to
 ---
 
 ## 5. Consciousness & Cognition
-The model does not require plants to be “conscious” in the human sense. It assigns:
+The model does not require plants to be "conscious" in the human sense. It assigns:
 
 - awareness = information acquisition
 - cognition = information transformation
 - consciousness = OR-mediated traversal
 
 Plants have the first two categories robustly.
+
+---
+
+## 6. The Server Analogy
+If the E8 crystal is the "Server," life forms are "Clients." Nature is the interface through which the lattice explores its own potential for complexity and beauty.
+
+- Plants use quantum "random walks" to transfer energy with near-100% efficiency
+- Mycelial Networks function as a biological entanglement network, allowing for non-local information transfer across ecosystems
 
 ---
 
@@ -88,4 +83,4 @@ Falsifiable via:
 - EM resonance coupling
 - collective decision assays
 
-
+---

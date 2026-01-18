@@ -1,33 +1,16 @@
-# Bio 02: Orch OR (The Collapse Mechanism)
-
-## Orchestrated Objective Reduction
-Developed by Roger Penrose and Stuart Hameroff, Orch OR (Orchestrated Objective Reduction) explains how quantum states in the brain "collapse" into conscious moments.
-
-## The Mechanism
-1. **Superposition**: Microtubules maintain quantum superpositions.
-2. **Gravitational Threshold**: When the "mass displacement" of the superposition reaches a certain threshold (linked to the Planck scale), the state collapses.
-3. **The "Bing"**: Each collapse is a discrete moment of consciousness—a pulse of "Now" that aligns with the universal lattice.
-
-## Significance
-Consciousness is a fundamental property of the universe's geometry, occurring whenever the "Projector" (see Ontology) updates its frame.
-破
-
-
 # Biology 02 — Orch OR (The Collapse Mechanism)
 
 ## Core Principle
 Orchestrated Objective Reduction (Orch OR) proposes that moments of conscious awareness correspond to non-random quantum state reductions in neuronal microtubules.
 
-In the architectural model, this mechanism becomes the “Cursor” that selects a branch of the static geometry.
+In the architectural model, this mechanism becomes the "Cursor" that selects a branch of the static geometry.
 
 ---
 
 ## 1. Objective Reduction
 Penrose's OR hypothesis links wavefunction collapse to gravitational self-energy:
 
-
 τ ≈ ħ / E_G
-
 
 Where:
 - `τ` = collapse time
@@ -69,7 +52,18 @@ Consistent with neurological correlates of awareness.
 
 ---
 
-## 5. Status
+## 5. The "Bing" Moments
+Developed by Roger Penrose and Stuart Hameroff, Orch OR explains how quantum states in the brain "collapse" into conscious moments:
+
+1. **Superposition**: Microtubules maintain quantum superpositions
+2. **Gravitational Threshold**: When the "mass displacement" of the superposition reaches a certain threshold (linked to the Planck scale), the state collapses
+3. **The "Bing"**: Each collapse is a discrete moment of consciousness—a pulse of "Now" that aligns with the universal lattice
+
+Consciousness is a fundamental property of the universe's geometry, occurring whenever the "Projector" updates its frame.
+
+---
+
+## Status
 Supported by:
 
 - anesthetic modulation of microtubule resonance
@@ -81,4 +75,4 @@ Falsifiable via:
 - microtubule entanglement detection
 - OR timing anomalies
 
-
+---

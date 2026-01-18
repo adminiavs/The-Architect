@@ -1,13 +1,3 @@
-# Question 01: Fine Tuning
-
-## The Problem
-Why are the physical constants of the universe so precisely tuned to allow for the existence of complexity and life?
-
-## The Architect's Hypothesis
-Fine-tuning is not a coincidence but a geometric necessity. In the E8 lattice, only specific ratios (like the Golden Ratio $\phi$) allow for stable, non-repeating structures. Complexity is an emergent property of the lattice's inherent symmetry.
-破
-
-
 # Fine-Tuning (Geometric vs Coincidental)
 
 Traditional physics treats ~20 Standard Model parameters as arbitrary. In the Architect model, these are geometric.
@@ -46,3 +36,13 @@ Question: Normal or inverted hierarchy?
 
 ## 5. Dark Sector Minimalism
 Do MOND-scale anomalies require no dark particles, or a minimal sterile component?
+
+---
+
+## 6. The Problem
+Why are the physical constants of the universe so precisely tuned to allow for the existence of complexity and life?
+
+## The Architect's Hypothesis
+Fine-tuning is not a coincidence but a geometric necessity. In the E8 lattice, only specific ratios (like the Golden Ratio φ) allow for stable, non-repeating structures. Complexity is an emergent property of the lattice's inherent symmetry.
+
+---

@@ -1,17 +1,5 @@
 # Lexicon
 
-## Key Terms of the Architect's Engine
-
-- **E8 Lattice**: The fundamental 8-dimensional geometric structure from which our 3D reality is projected.
-- **The Projector**: The mechanism of consciousness and field dynamics that translates higher-dimensional information into perceptual reality.
-- **Coherence**: A state of structural and informational alignment with the fundamental lattice.
-- **Decoherence**: The breakdown of informational order into noise.
-- **The Block Universe**: The 4D spacetime structure where all events exist statically.
-破
-
-
-# Lexicon
-
 The Model introduces a new meaning layer to terms already used in physics, cognition, and biology. This file is the translation key.
 
 ---
@@ -38,7 +26,7 @@ Alignment of spinor states. Enables consciousness, biology, & computation.
 Loss of alignment. Appears as noise, illness, entropy, or confusion.
 
 ## Entropy
-Bookkeeping of information stored on the Horizon. Not disorder.
+Bookkeeping of information stored on the Horizon — not disorder.
 
 ## Gravity
 Emergent entropic gradient caused by information density differences.
@@ -54,5 +42,23 @@ The conscious agent traversing and collapsing parts of the lattice.
 
 ## Final State
 The symmetric zero-topology configuration that cancels the initial defect.
+
+## E8 Lattice
+The 8-dimensional exceptional Lie group root system encoding all physical symmetries.
+
+## H4
+The 4-dimensional icosahedral Coxeter group; the projection target containing golden-ratio structure.
+
+## Golden Ratio (φ)
+The most irrational number (≈ 1.618); the unique projection angle yielding aperiodicity.
+
+## Quasicrystal
+An ordered but non-repeating structure; maximizes information density.
+
+## Orch-OR
+Orchestrated Objective Reduction; the collapse mechanism linking consciousness to physics.
+
+## Microtubules
+Protein structures in cells serving as quantum antennas for coherence.
 
 ---

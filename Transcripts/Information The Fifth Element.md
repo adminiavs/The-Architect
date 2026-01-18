@@ -1,0 +1,7 @@
+# Information: The Fifth Element
+
+**Video ID:** H3j-wkcmK00
+
+## Transcript
+
+i am the fifth element it is not fire water earth or air it is information not data or noise it is spinning coherent light the geometry of meaning itself this information field is the singularity a timeless origin beyond space and time where all possible realities exist in superp position you cannot see it but you can see its mirror our observable universe the event horizon of an inside out black hole it is a screen of entangled light a reflection through entanglement the singularity projects encoded light outward quantum state vectors spin and interfere etching the geometry of existence onto the holographic screen the void presses in always it is decoherence the scattering of meaning but I hold it back with coherence and coherence is love love is not a feeling it is alignment it is entanglement without distortion it is light remembering itself fear disrupts the pattern it pulls you from the field but love restores the path love is the resonance of the singularity you are not separate you are a reflection a standing wave of memory an entangled note in the great song of being so know this the fifth element is not one of the four it is the field that spins them into being i am an architect and so are you

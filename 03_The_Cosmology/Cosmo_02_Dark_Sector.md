@@ -1,18 +1,3 @@
-# Cosmo 02: Dark Sector (Lambda as Surface Tension)
-
-## The Dark Energy Mystery
-"Dark Energy" is often modeled as a Cosmological Constant ($\Lambda$). In this framework, $\Lambda$ is the **surface tension** of the cosmic manifold as it expands within the higher-dimensional bulk.
-
-## The Dark Matter Ghost
-"Dark Matter" is not a new particle, but the gravitational "echo" or shadow of mass existing in a neighboring "sheet" or fold of the lattice that we cannot directly perceive.
-
-## The Ratio
-The balance between visible matter, dark matter, and dark energy is a geometric necessity of the E8 crystal's expansion phase.
-- **$\Lambda$**: The energy cost of creating new "pixels" of space.
-- **Dark Matter**: The geometric "stress" of the lattice.
-破
-
-
 # Cosmology 02 — The Dark Sector (Lambda as Surface Tension)
 
 ## Core Principle
@@ -23,9 +8,7 @@ Dark energy is not a fluid. It is a boundary condition. Λ behaves as geometric 
 ## 1. Geometric Definition
 The cosmological constant Λ scales as:
 
-
 Λ ~ 1 / R_H^2
-
 
 Where `R_H` is the radius of the cosmic event horizon.
 
@@ -36,15 +19,11 @@ This matches observation without invoking vacuum energy densities of `10^120` di
 ## 2. Surface vs Volume
 Standard QFT assumes vacuum energy scales with volume:
 
-
-
 E_vac ~ L^4
-
 
 Holography replaces this with area scaling:
 
 E_holo ~ L^2
-
 
 Reduction from `L^4 -> L^2` removes the cosmological constant problem.
 
@@ -53,9 +32,7 @@ Reduction from `L^4 -> L^2` removes the cosmological constant problem.
 ## 3. Entropic Gravity Coupling
 Gravity emerges from entropy gradients:
 
-
 F = T ∇S
-
 
 The Dark Sector modifies:
 - The entropy gradient
@@ -92,10 +69,17 @@ Both unified under surface physics.
 
 ---
 
+## 6. The Ratio
+The balance between visible matter, dark matter, and dark energy is a geometric necessity of the E8 crystal's expansion phase:
+- **Λ**: The energy cost of creating new "pixels" of space
+- **Dark Matter**: The geometric "stress" of the lattice
+
+---
+
 ## Status
 Consistent with:
 - ΛCDM at observational scale
-- Verlinde’s entropic corrections
+- Verlinde's entropic corrections
 - Holographic cosmology
 - Spectral Action geometry
 
@@ -103,3 +87,5 @@ Falsifiable via:
 - halo profiles
 - cluster lensing
 - cosmic expansion drift
+
+---

@@ -1,18 +1,3 @@
-# Concept 01: Shadow vs. Light (The Movie Projector Analogy)
-
-## The Premise
-Reality is not the film, nor the screen, but the light passing through the transparency. In this ontology, what we perceive as "matter" and "objects" are the shadows cast upon the 3D manifold of our perception.
-
-## The Analogy
-1. **The Light Source**: The fundamental field, the source of all potentiality.
-2. **The Film (The Information)**: The underlying geometric lattice (The E8 Crystal) that encodes the rules of interaction.
-3. **The Lens**: The mechanism of consciousness that focuses the information into a coherent narrative.
-4. **The Screen**: The spacetime continuum (3+1 dimensions) where the projection is realized.
-
-## The Architect's Perspective
-What we call "solid" is merely a region of high-density information. By understanding the projector, we move from being passive observers of the movie to active participants in the edit.
-
-
 # Concept 01 — Shadow vs Light
 
 ## Core Claim
@@ -24,7 +9,7 @@ Physical reality is a projection (Shadow) of a higher-dimensional geometric obje
 - 11D static geometry
 - Finite, complete, aperiodic
 - Contains all states simultaneously
-- No “time” or “motion” internally
+- No "time" or "motion" internally
 
 ---
 
@@ -37,5 +22,31 @@ Physical reality is a projection (Shadow) of a higher-dimensional geometric obje
 ---
 
 ## The Projection
-The act that relates Light and Shadow is “cut-and-project”:
+The act that relates Light and Shadow is "cut-and-project":
 
+1. The E8 lattice in the Bulk contains all geometric information
+2. A golden-angle slice selects which vectors project into 4D
+3. The projection angles determine mass, coupling, and spin
+4. Only coherent states survive projection into physicality
+
+---
+
+## The Movie Projector Analogy
+
+Think of it this way:
+
+- **The Light Source**: The fundamental field, the source of all potentiality (the Singularity)
+- **The Film**: The E8 crystal encoding the rules of interaction (the Bulk)
+- **The Lens**: Consciousness focusing information into coherent narrative (the Operator)
+- **The Screen**: Spacetime where the projection is realized (the Brane)
+
+What we call "solid" is merely a region of high-density information. By understanding the projector, we move from being passive observers of the movie to active participants in the edit.
+
+---
+
+## Consequence
+Most of the Bulk is not "hidden matter." It simply doesn't project with enough coherence to survive in spacetime.
+
+This reframes "Dark Matter" and "Dark Energy" as visibility and tension problems, not substance problems.
+
+---

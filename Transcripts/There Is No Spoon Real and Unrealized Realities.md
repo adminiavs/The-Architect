@@ -1,0 +1,7 @@
+# There Is No Spoon: Real and Unrealized Realities
+
+**Video ID:** yphShNRG-Yw
+
+## Transcript
+
+Take a look at this spoon. It looks solid, fixed, and undeniably real. But what if everything you are seeing depends entirely on how you are observing it? Now imagine a car speeding toward you. As it approaches, its sound rises in pitch. As it passes and moves away, the sound lowers. This is the Doppler effect. It happens when waves get compressed. As something moves toward you and stretched out as it moves away, you hear a higher pitch from the front and a lower pitch from the back.But someone inside the car hears no change at all. So what sound is the car actually making? It is making all of them depending on who hears it. Each version is equally real. When we apply that to light, a blue shirt moving away near light speed looks red. But to someone traveling with it, it stays blue. So what color is it? Again, it depends on the observer. Reality itself shifts based on motion and perspective.Every sound, color, and moment you experience is one slice of possibility.But all the other slices, the ones you do not observe, are just as real. They are simply unrealized. So what about the spoon? It is not a fixed object. It is a wave of information shaped by how each observer perceives it. So in base reality, there is no spoon, only information.
