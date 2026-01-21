@@ -87,6 +87,7 @@ How to live inside the structure.
 - `Guide_02_Healing_And_Health.md` — The physics of the body
 - `Guide_03_Synchronicity.md` — Reading lattice feedback
 - `Guide_04_Social_Algorithm.md` — Network coherence and service
+- `Guide_05_Breathing_Protocol.md` — Clock synchronization through breath
 
 ### **[06_Falsifiability](./06_Falsifiability/)** — Kill-Switch Tests
 Experiments that could destroy the model.
@@ -132,7 +133,8 @@ Original explanatory transcripts.
 
 **If you want to test it:**
 1. Read `06_Falsifiability/Test_01_Gamma_Ray_Dispersion.md` — The cleanest kill switch
-2. Run `python3 Examples/verify_e8_koide.py` — Numerical verification
+2. Install dependencies: `pip install -r Examples/requirements.txt`
+3. Run `python3 Examples/verify_e8_koide.py` — Numerical verification
 
 ---
 

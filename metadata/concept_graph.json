@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0",
+  "description": "Concept dependency graph for The Architect model",
+  "last_updated": "2026-01-21",
+  "concepts": [
+    {
+      "id": "geometric_reality",
+      "name": "Reality is Geometric",
+      "category": "axiom",
+      "level": 0,
+      "definition": "All physical quantities (mass, charge, spin, time, probability) are properties of geometry, not substances",
+      "primary_document": "00_The_Kernel/Axioms.md",
+      "section": "Axiom 1",
+      "related_documents": [
+        "01_The_Ontology/Concept_01_Shadow_Vs_Light.md",
+        "02_The_Physics_Engine/Mech_02_The_Spectral_Action.md"
+      ],
+      "depends_on": [],
+      "required_by": ["e8_lattice", "projection", "mass_generation"],
+      "tags": ["foundational", "axiom", "geometry"]
+    },
+    {
+      "id": "information_primacy",
+      "name": "Information is Primary",
+      "category": "axiom",
+      "level": 0,
+      "definition": "Matter and energy are emergent expressions of information encoded in geometry",
+      "primary_document": "00_The_Kernel/Axioms.md",
+      "section": "Axiom 2",
+      "related_documents": [
+        "02_The_Physics_Engine/Mech_01_Entropic_Gravity.md",
+        "03_The_Cosmology/Cosmo_01_Black_Holes.md"
+      ],
+      "depends_on": ["geometric_reality"],
+      "required_by": ["holographic_principle", "entropy_bookkeeping"],
+      "tags": ["foundational", "axiom", "information"]
+    },
+    {
+      "id": "static_time",
+      "name": "Time is Traversal",
+      "category": "axiom",
+      "level": 0,
+      "definition": "The Universe is static in the Bulk. Time is the path a conscious observer takes across the structure",
+      "primary_document": "00_The_Kernel/Axioms.md",
+      "section": "Axiom 3",
+      "related_documents": [
+        "01_The_Ontology/Concept_02_Static_Time.md"
+      ],
+      "depends_on": ["geometric_reality"],
+      "required_by": ["consciousness_traversal", "block_universe"],
+      "tags": ["foundational", "axiom", "time", "consciousness"]
+    },
+    {
+      "id": "e8_lattice",
+      "name": "E8 Lattice",
+      "category": "geometry",
+      "level": 1,
+      "definition": "8-dimensional exceptional Lie group root system encoding all physical symmetries",
+      "primary_document": "01_The_Ontology/Concept_03_The_E8_Crystal.md",
+      "related_documents": [
+        "02_The_Physics_Engine/Proof_01_Koide_Derivation.md",
+        "02_The_Physics_Engine/Proof_02_E8_H4_Projection.md",
+        "08_References/The_Glimpse.md"
+      ],
+      "depends_on": ["geometric_reality"],
+      "required_by": ["h4_projection", "mass_generation", "standard_model"],
+      "properties": {
+        "dimensions": 8,
+        "root_count": 240,
+        "root_norm": "√2",
+        "symmetry_group": "E8"
+      },
+      "tags": ["fundamental", "geometry", "lattice", "lie_group"]
+    },
+    {
+      "id": "h4_projection",
+      "name": "H4 Projection",
+      "category": "mechanism",
+      "level": 2,
+      "definition": "Projection from E8 to 4-dimensional icosahedral Coxeter group via golden angle",
+      "primary_document": "02_The_Physics_Engine/Proof_02_E8_H4_Projection.md",
+      "depends_on": ["e8_lattice", "golden_ratio"],
+      "required_by": ["koide_ratio", "mass_hierarchy", "quasicrystal"],
+      "properties": {
+        "target_dimension": 4,
+        "projection_angle": "π/(3φ)",
+        "symmetry_preserved": "icosahedral"
+      },
+      "tags": ["mechanism", "projection", "geometry"]
+    },
+    {
+      "id": "golden_ratio",
+      "name": "Golden Ratio (φ)",
+      "category": "constant",
+      "level": 1,
+      "definition": "The most irrational number (≈ 1.618), unique projection angle yielding aperiodicity",
+      "primary_document": "00_The_Kernel/Lexicon.md",
+      "related_documents": [
+        "02_The_Physics_Engine/Proof_02_E8_H4_Projection.md",
+        "06_Falsifiability/Test_03_The_Golden_Ratio.md"
+      ],
+      "depends_on": [],
+      "required_by": ["h4_projection", "quasicrystal", "phason_coupling"],
+      "properties": {
+        "value": 1.618033988749,
+        "reciprocal": 0.618033988749,
+        "relation": "φ² = φ + 1"
+      },
+      "tags": ["constant", "geometry", "aperiodic"]
+    },
+    {
+      "id": "koide_ratio",
+      "name": "Koide Ratio",
+      "category": "prediction",
+      "level": 3,
+      "definition": "Q = 2/3 for charged lepton mass ratios",
+      "primary_document": "02_The_Physics_Engine/Proof_01_Koide_Derivation.md",
+      "related_documents": [
+        "07_Open_Questions/Unknown_Parameters.md"
+      ],
+      "depends_on": ["e8_lattice", "h4_projection", "a2_symmetry"],
+      "required_by": [],
+      "derivation": {
+        "formula": "Q = Σm/(Σ√m)²",
+        "result": 0.666667,
+        "mechanism": "Threefold A₂ symmetry in H4 projection"
+      },
+      "verification": {
+        "status": "verified",
+        "experimental_value": 0.666661,
+        "theoretical_value": 0.666667,
+        "accuracy_percent": 99.999,
+        "references": ["Koide 1981", "PDG 2024"]
+      },
+      "tags": ["prediction", "verified", "mass", "lepton"]
+    },
+    {
+      "id": "entropic_gravity",
+      "name": "Entropic Gravity",
+      "category": "mechanism",
+      "level": 2,
+      "definition": "Gravity emerges from thermodynamic gradients of horizon information",
+      "primary_document": "02_The_Physics_Engine/Mech_01_Entropic_Gravity.md",
+      "related_documents": [
+        "08_References/The_Glimpse.md"
+      ],
+      "depends_on": ["information_primacy", "holographic_principle"],
+      "required_by": ["dark_matter_emergence", "cosmological_constant"],
+      "equation": "F = T∇S",
+      "tags": ["mechanism", "gravity", "emergence", "thermodynamics"]
+    },
+    {
+      "id": "consciousness_collapse",
+      "name": "Consciousness as Collapse",
+      "category": "mechanism",
+      "level": 5,
+      "definition": "Conscious observation selects branches of geometry through quantum collapse",
+      "primary_document": "01_The_Ontology/Concept_05_Operator_and_State.md",
+      "related_documents": [
+        "04_Consciousness_and_Biology/Bio_02_Orch_Or.md",
+        "05_The_Operator_Manual/00_Introduction.md"
+      ],
+      "depends_on": ["static_time", "microtubule_coherence"],
+      "required_by": ["operator_agency"],
+      "tags": ["consciousness", "quantum", "collapse", "orch_or"]
+    },
+    {
+      "id": "microtubule_coherence",
+      "name": "Microtubule Quantum Coherence",
+      "category": "mechanism",
+      "level": 4,
+      "definition": "Protein structures in neurons serve as quantum antennas for coherence",
+      "primary_document": "04_Consciousness_and_Biology/Bio_01_Microtubules.md",
+      "related_documents": [
+        "04_Consciousness_and_Biology/Bio_02_Orch_Or.md",
+        "05_The_Operator_Manual/Guide_02_Healing_And_Health.md"
+      ],
+      "depends_on": ["e8_lattice"],
+      "required_by": ["consciousness_collapse"],
+      "tags": ["biology", "consciousness", "quantum", "neuroscience"]
+    }
+  ],
+  "relationships": [
+    {
+      "from": "e8_lattice",
+      "to": "h4_projection",
+      "type": "projects_to",
+      "mechanism": "Cut-and-project at golden angle"
+    },
+    {
+      "from": "h4_projection",
+      "to": "koide_ratio",
+      "type": "derives",
+      "mechanism": "A₂ threefold symmetry"
+    },
+    {
+      "from": "golden_ratio",
+      "to": "h4_projection",
+      "type": "determines",
+      "mechanism": "Unique aperiodic projection angle"
+    },
+    {
+      "from": "information_primacy",
+      "to": "entropic_gravity",
+      "type": "enables",
+      "mechanism": "Information gradients on horizons"
+    },
+    {
+      "from": "microtubule_coherence",
+      "to": "consciousness_collapse",
+      "type": "implements",
+      "mechanism": "Orch-OR quantum collapse in neurons"
+    }
+  ],
+  "categories": {
+    "axiom": "Foundational assumptions",
+    "geometry": "Geometric structures",
+    "mechanism": "Physical processes",
+    "prediction": "Testable predictions",
+    "constant": "Mathematical constants"
+  },
+  "levels": {
+    "0": "Axioms and foundations",
+    "1": "Bulk geometry",
+    "2": "Projection mechanics",
+    "3": "Physics predictions",
+    "4": "Biology",
+    "5": "Consciousness",
+    "6": "Purpose"
+  }
+}

@@ -3,4 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 .DS_Store
+gqe_venv/
+.cursor/
+.vscode/
+*.so
+build/
+dist/
+*.egg-info/
+.coverage
+.cache
+.pytest_cache/
 
