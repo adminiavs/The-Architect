@@ -31,8 +31,8 @@ from gqe_compression.compressor import GQECompressor
 
 
 def test_consolidation():
-    """Test that similar nodes are merged."""
-    print("\n--- Test 1: Consolidation (Merge Synonyms) ---")
+    """Test that similar nodes share geometry (lossless)."""
+    print("\n--- Test 1: Consolidation (Share Geometry, Lossless) ---")
     
     # Create vocabulary with synonyms
     vocabulary = {
@@ -72,14 +72,25 @@ def test_consolidation():
     )
     
     print(f"  Vocabulary: {len(vocabulary)} -> {len(new_vocab)}")
-    print(f"  Merged: {report.nodes_merged}")
+    print(f"  Consolidated: {report.nodes_merged}")
     
     for kept, merged in report.merge_pairs:
-        print(f"    '{merged}' merged into '{kept}'")
+        print(f"    '{merged}' shares geometry with '{kept}'")
     
-    # Check that monarch was merged into king
-    passed = 'king' in new_vocab and 'monarch' not in new_vocab
-    print(f"  'monarch' merged into 'king': {passed}")
+    # CRITICAL: Check that BOTH tokens still exist (lossless)
+    both_exist = 'king' in new_vocab and 'monarch' in new_vocab
+    print(f"  Both 'king' and 'monarch' in vocab: {both_exist}")
+    
+    # Check that they share the same geometry
+    if both_exist:
+        king_idx = new_vocab['king']
+        monarch_idx = new_vocab['monarch']
+        same_geometry = np.allclose(new_embed[king_idx], new_embed[monarch_idx])
+        print(f"  Share same E8 position: {same_geometry}")
+        passed = both_exist and same_geometry
+    else:
+        passed = False
+    
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
     return passed
@@ -131,10 +142,10 @@ def test_pruning():
 
 
 def test_compression():
-    """Test that vocabulary shrinks after sleep."""
-    print("\n--- Test 3: Knowledge Compression ---")
+    """Test geometric compression and vocabulary pruning."""
+    print("\n--- Test 3: Geometric Compression + Pruning ---")
     
-    # Create a larger vocabulary with redundancy
+    # Create a larger vocabulary with redundancy and noise
     vocab_size = 50
     vocabulary = {f"word_{i}": i for i in range(vocab_size)}
     
@@ -156,12 +167,11 @@ def test_compression():
         if i % 5 == 0:
             usage_counts[i] = 100  # Cluster head
         else:
-            usage_counts[i] = 10   # Cluster member
+            usage_counts[i] = 2   # Cluster member (low usage)
     
-    # Some noise words with no usage
-    usage_counts[47] = 0
-    usage_counts[48] = 0
-    usage_counts[49] = 0
+    # Many noise words with no usage (will be pruned)
+    for i in range(40, 50):
+        usage_counts[i] = 0  # 10 unused words
     
     cooccurrence_counts = {}
     
@@ -175,12 +185,16 @@ def test_compression():
     print(f"  Original vocabulary: {vocab_size}")
     print(f"  After sleep: {len(new_vocab)}")
     print(f"  Compression ratio: {compression:.2%}")
-    print(f"  Merged: {report.nodes_merged}, Pruned: {report.nodes_pruned}")
-    print(f"  Storage saved: {report.storage_reduction_bytes} bytes")
+    print(f"  Consolidated: {report.nodes_merged} (share geometry, lossless)")
+    print(f"  Pruned: {report.nodes_pruned} (deleted, vocab reduction)")
     
-    # Should compress significantly
-    passed = compression < 0.7  # At least 30% reduction
-    print(f"  Significant compression: {passed}")
+    # Should have pruned ~10 noise words
+    # Consolidation doesn't reduce vocab size, only pruning does
+    vocab_reduction = vocab_size - len(new_vocab)
+    print(f"  Vocabulary reduced by: {vocab_reduction} (from pruning)")
+    
+    passed = report.nodes_pruned >= 5 and report.nodes_merged >= 10
+    print(f"  Sufficient pruning and consolidation: {passed}")
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
     return passed

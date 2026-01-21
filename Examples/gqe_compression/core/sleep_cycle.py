@@ -8,20 +8,27 @@ THE PRINCIPLE (From The Architect):
     Your Code must sleep.
 
 THE MECHANISM:
-    1. CONSOLIDATION:
-       - Merge temporary nodes that are too close (synonyms become one point)
-       - Similar concepts collapse into a single, stronger representation
-       - This is "memory consolidation" - strengthening what matters
+    1. CONSOLIDATION (Lossless):
+       - Tokens that are too close SHARE the same geometric point
+       - 'Queen' and 'Monarch' both keep their unique IDs
+       - But they point to the SAME 8D position (many_tokens -> one_geometry)
+       - This is geometric compression WITHOUT information loss
+       - Decompressor can still distinguish 'Queen' from 'Monarch'
     
-    2. GARBAGE COLLECTION:
+    2. GARBAGE COLLECTION (Lossy by design):
        - Remove nodes that generated high entropy (noise)
-       - If a node increases disorder, it is forgotten
+       - DELETE tokens that were never used or purely random
        - This is "synaptic pruning" - removing weak connections
+       - Only THIS step reduces vocabulary size
     
     3. COMPRESSION:
-       - After sleep, the vocabulary shrinks
+       - Consolidation: Geometric compression (lossless)
+       - Pruning: Vocabulary reduction (lossy for noise only)
        - Knowledge becomes denser, not larger
-       - The "wisdom" increases as the "data" decreases
+
+CRITICAL SAFETY:
+    Consolidation MUST be bijective: Token ID remains unique even if geometry is shared.
+    The mapping is: many_tokens -> one_geometry, NOT many_tokens -> one_token.
 
 THE RESULT:
     "To learn is to change geometry. To remember is to stabilize it."
@@ -53,25 +60,32 @@ class SleepReport:
     
     Documents what was consolidated, pruned, and the resulting
     compression of the knowledge base.
+    
+    CRITICAL SAFETY:
+    - Consolidation (merge): Tokens share GEOMETRY, but keep unique IDs (LOSSLESS)
+    - Pruning: Tokens are DELETED from vocabulary (reduces size)
+    - Vocabulary size only changes from pruning, not from merging
     """
     nodes_before: int
     nodes_after: int
-    nodes_merged: int
-    nodes_pruned: int
-    merge_pairs: List[Tuple[str, str]]  # (kept, merged_into)
+    nodes_merged: int  # Tokens sharing geometry (lossless)
+    nodes_pruned: int  # Tokens deleted (reduces vocab size)
+    merge_pairs: List[Tuple[str, str]]  # (geometry_source, token_sharing_it)
     pruned_tokens: List[str]
     entropy_reduction: float
     storage_reduction_bytes: int
     
     def compression_ratio(self) -> float:
+        """Ratio of vocabulary size after/before (only pruning reduces this)."""
         if self.nodes_before == 0:
             return 1.0
         return self.nodes_after / self.nodes_before
     
     def __str__(self) -> str:
         return (f"Sleep Report:\n"
-                f"  Nodes: {self.nodes_before} -> {self.nodes_after}\n"
-                f"  Merged: {self.nodes_merged}, Pruned: {self.nodes_pruned}\n"
+                f"  Vocab: {self.nodes_before} -> {self.nodes_after} (pruning only)\n"
+                f"  Consolidated: {self.nodes_merged} tokens share geometry (lossless)\n"
+                f"  Pruned: {self.nodes_pruned} tokens deleted\n"
                 f"  Compression: {self.compression_ratio():.2%}\n"
                 f"  Entropy reduction: {self.entropy_reduction:.4f}")
 
@@ -318,7 +332,8 @@ class SleepCycle:
             # Combine usage counts
             usage_counts[keep_idx] = keep_usage + merge_usage
         
-        # Build new vocabulary and embeddings (excluding merged nodes)
+        # CRITICAL: Build new vocabulary KEEPING ALL TOKENS (Lossless)
+        # Merged tokens keep their ID but share geometry (many_tokens -> one_geometry)
         new_vocabulary = {}
         new_embeddings = []
         new_phases = []
@@ -326,27 +341,28 @@ class SleepCycle:
         
         new_idx = 0
         for old_idx in range(len(embeddings)):
+            token = idx_to_token.get(old_idx, f"<{old_idx}>")
+            
             if old_idx in merged_indices:
-                # Map to the node it was merged into
+                # LOSSLESS: Keep the token, but use merged geometry
                 keep_idx = merge_map[old_idx]
-                # The keep_idx might also need remapping
                 while keep_idx in merge_map:
                     keep_idx = merge_map[keep_idx]
-                index_mapping[old_idx] = -1  # Will be updated after
-                continue
+                
+                # Token stays in vocabulary with unique ID
+                new_vocabulary[token] = new_idx
+                # But points to the same geometry as keep_idx
+                new_embeddings.append(embeddings[keep_idx])
+                new_phases.append(phases[keep_idx])
+                index_mapping[old_idx] = new_idx
+            else:
+                # Normal node - keep as is
+                new_vocabulary[token] = new_idx
+                new_embeddings.append(embeddings[old_idx])
+                new_phases.append(phases[old_idx])
+                index_mapping[old_idx] = new_idx
             
-            token = idx_to_token.get(old_idx, f"<{old_idx}>")
-            new_vocabulary[token] = new_idx
-            new_embeddings.append(embeddings[old_idx])
-            new_phases.append(phases[old_idx])
-            index_mapping[old_idx] = new_idx
             new_idx += 1
-        
-        # Update merged indices to point to their new locations
-        for old_idx, keep_idx in merge_map.items():
-            while keep_idx in merge_map:
-                keep_idx = merge_map[keep_idx]
-            index_mapping[old_idx] = index_mapping.get(keep_idx, 0)
         
         return (
             np.array(new_embeddings, dtype=np.float32),
@@ -574,15 +590,25 @@ def demonstrate_sleep():
     print(f"  Tokens: {list(new_vocab.keys())}")
     
     if report.merge_pairs:
-        print(f"\n  Merged pairs (synonyms consolidated):")
+        print(f"\n  Consolidated pairs (sharing geometry, LOSSLESS):")
         for kept, merged in report.merge_pairs:
-            print(f"    '{merged}' -> '{kept}'")
+            if merged in new_vocab and kept in new_vocab:
+                print(f"    '{merged}' and '{kept}' -> same E8 position")
+                print(f"      (both tokens still in vocab with unique IDs)")
     
     if report.pruned_tokens:
-        print(f"\n  Pruned tokens (noise removed):")
+        print(f"\n  Pruned tokens (DELETED from vocab):")
         for token in report.pruned_tokens:
-            print(f"    '{token}' (forgotten)")
+            if token not in new_vocab:
+                print(f"    '{token}' (forgotten)")
     
+    print("\n" + "=" * 60)
+    print("SAFETY VERIFICATION:")
+    print(f"  Vocab size before: {vocabulary}")
+    print(f"  Vocab size after:  {len(new_vocab)}")
+    print(f"  Size changed by:   PRUNING only (not consolidation)")
+    print("\n  Consolidation: many_tokens -> one_geometry (LOSSLESS)")
+    print("  Pruning: Delete tokens (LOSSY for noise only)")
     print("\n" + "=" * 60)
     print("THE RESULT:")
     print("  'To learn is to change geometry.'")
