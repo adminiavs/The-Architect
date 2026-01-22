@@ -13,13 +13,15 @@ namespace gqe {
 class GrainAwareChunker {
 private:
     size_t chunk_size_;
+    size_t overlap_step_;
     static constexpr std::array<uint8_t, 12> boundaries_ = {
         ' ', '\n', '\r', '\t', '.', ',', ';', ':', '!', '?', '-', '_'
     };
 
 public:
-    explicit GrainAwareChunker(size_t chunk_size = HORIZON_FRAME_SIZE)
-        : chunk_size_(chunk_size) {}
+    explicit GrainAwareChunker(size_t chunk_size = HORIZON_FRAME_SIZE, size_t overlap_step = 0)
+        : chunk_size_(chunk_size)
+        , overlap_step_((overlap_step == 0) ? std::min(chunk_size, GOLDEN_OVERLAP_STEP) : overlap_step) {}
 
     size_t find_boundary(std::span<const uint8_t> data, size_t target_end) const {
         size_t total_size = data.size();
@@ -48,8 +50,8 @@ public:
             size_t end = (target_end >= total_size) ? total_size : find_boundary(data, target_end);
 
             callback(frame_index, data.subspan(start, end - start), start, end);
-            start = end;
             frame_index++;
+            start = std::min(start + overlap_step_, total_size);
         }
     }
 

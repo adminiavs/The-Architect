@@ -13,7 +13,7 @@ namespace gqe {
 template<size_t N = E8_ROOTS>
 struct E8Lattice {
 private:
-    // Generate E8 lattice roots at compile time (240 roots)
+    // Generate the compile-time E8 map; template can extend beyond the 240 roots if requested
     static constexpr std::array<Spinor8D, N> generate_roots() {
         std::array<Spinor8D, N> roots{};
         size_t idx = 0;
@@ -47,6 +47,16 @@ private:
                 }
             }
             if (minus_count % 2 == 0 && idx < N) {
+                roots[idx++] = Spinor8D(v);
+            }
+        }
+
+        // Type III: (±sqrt(2), 0, ..., 0) and permutations (16 additional points)
+        // This completes the 240 roots to a 256-state map while maintaining norm=sqrt(2).
+        for (int i = 0; i < 8 && idx < N; ++i) {
+            for (float s : {1.41421356f, -1.41421356f}) {
+                std::array<float, 8> v{};
+                v[i] = s;
                 roots[idx++] = Spinor8D(v);
             }
         }

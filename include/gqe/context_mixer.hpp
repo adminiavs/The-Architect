@@ -1,12 +1,19 @@
 #pragma once
 
-#include "constants.hpp"
 #include "bekenstein_arena.hpp"
-#include <cstdint>
+#include "constants.hpp"
+#include "e8_lattice.hpp"
+#include "types.hpp"
+
 #include <array>
+#include <bitset>
+#include <cmath>
+#include <cstdint>
 #include <cstring>
-#include <algorithm>
 #include <immintrin.h>
+#include <iostream>
+#include <memory>
+#include <vector>
 
 namespace gqe {
 
@@ -15,7 +22,7 @@ namespace gqe {
  */
 class FibonacciHasher {
 private:
-    static constexpr uint64_t PHI_U64 = static_cast<uint64_t>(PHI * (1ULL << 32));
+    static constexpr uint64_t PHI_U64 = 11400714819323198485ULL; // Floor(2^64 / Phi)
 
 public:
     inline static uint32_t hash(uint32_t key, uint32_t table_size) {
@@ -25,150 +32,148 @@ public:
 };
 
 /**
- * Lock-Free Hash Table for Context Mixing
- */
-template<size_t TABLE_SIZE = 16384>
-class ContextTable {
-private:
-    struct Entry {
-        uint32_t key;
-        uint8_t probabilities[256];
-        bool valid;
-    };
-
-    std::unique_ptr<Entry[]> table_;
-
-public:
-    ContextTable() : table_(std::make_unique<Entry[]>(TABLE_SIZE)) {
-        reset();
-    }
-
-    inline void reset() {
-        std::memset(table_.get(), 0, sizeof(Entry) * TABLE_SIZE);
-    }
-
-    inline void update(uint32_t hash, const uint8_t* probs) {
-        Entry& entry = table_[hash % TABLE_SIZE];
-        entry.key = hash;
-        std::memcpy(entry.probabilities, probs, 256);
-        entry.valid = true;
-    }
-
-    inline const uint8_t* lookup(uint32_t hash) const {
-        const Entry& entry = table_[hash % TABLE_SIZE];
-        return entry.valid && entry.key == hash ? entry.probabilities : nullptr;
-    }
-};
-
-/**
- * SIMD-Optimized Context Mixer
+ * Geometric Parallelism Context Mixer - v71 Logic
+ *
+ * RESONANCE UPDATE:
+ * 1. Fibonacci Table Size: 75,025 (F25)
+ * 2. Fibonacci Decay: 0.618 multiplier for saturation
  */
 class GeometricParallelMixer {
 private:
-    ContextTable<> tables_[4];
-    uint8_t weights_[4];
+    static constexpr size_t TABLE_SIZE = 75025; // F25: Breaking the Aliasing
+
+    struct Entry {
+        std::array<uint8_t, TOTAL_GQE_STATES> qprobs;
+        std::array<uint16_t, TOTAL_GQE_STATES> byte_counts;
+        uint32_t total_count = 0;
+
+        Entry() {
+            qprobs.fill(1);
+            byte_counts.fill(0);
+        }
+
+        inline void update_counts(uint8_t actual) {
+            byte_counts[actual]++;
+            total_count++;
+
+            if (total_count > 1024) {
+                decay_counts();
+            }
+        }
+
+        inline void decay_counts() {
+            __m256i decay_v = _mm256_set1_epi16(40503);
+            for (size_t i = 0; i < TOTAL_GQE_STATES; i += 16) {
+                __m256i v = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(&byte_counts[i]));
+                v = _mm256_mulhi_epu16(v, decay_v);
+                _mm256_storeu_si256(reinterpret_cast<__m256i*>(&byte_counts[i]), v);
+            }
+            total_count = static_cast<uint32_t>(total_count * PHI_INV);
+        }
+
+        inline void refresh_qprobs() {
+            if (total_count == 0) return;
+
+            float inv_total = 255.0f / (static_cast<float>(total_count) + 1.0f);
+            for (size_t idx = 0; idx < TOTAL_GQE_STATES; ++idx) {
+                float normalized = (static_cast<float>(byte_counts[idx]) + 0.5f) * inv_total;
+                normalized = std::clamp(normalized, 1.0f, 255.0f);
+                if (idx >= PRIMARY_GQE_STATES) {
+                    // Secondary states are the 23 phason defects that sit outside the primary E8 roots.
+                    normalized *= PHI_INV;
+                    normalized = std::max(normalized, 1.0f);
+                }
+                qprobs[idx] = static_cast<uint8_t>(normalized);
+            }
+        }
+    };
+
+    std::array<std::unique_ptr<Entry[]>, CONTEXT_COUNT> tables_;
+    std::array<float, CONTEXT_COUNT> weights_;
+    std::array<uint16_t, CONTEXT_COUNT> weight_fixed_;
     BekensteinArena& arena_;
+
+    mutable std::array<std::bitset<TABLE_SIZE>, CONTEXT_COUNT> is_hot_;
+    mutable std::array<std::vector<uint32_t>, CONTEXT_COUNT> hot_indices_;
 
 public:
     explicit GeometricParallelMixer(BekensteinArena& arena)
         : arena_(arena) {
-        std::fill_n(weights_, 4, 64);
+        for (size_t i = 0; i < CONTEXT_COUNT; ++i) {
+            tables_[i] = std::make_unique<Entry[]>(TABLE_SIZE);
+            hot_indices_[i].reserve(TABLE_SIZE / 8);
+        }
+
+        float sum = 0.0f;
+        for (size_t idx = 0; idx < CONTEXT_COUNT; ++idx) {
+            float level = static_cast<float>(CONTEXT_COUNT - 1 - idx);
+            float ratio = std::pow(PHI_INV, level);
+            weights_[idx] = ratio;
+            sum += ratio;
+        }
+        for (size_t idx = 0; idx < CONTEXT_COUNT; ++idx) {
+            weights_[idx] /= sum;
+            weight_fixed_[idx] = static_cast<uint16_t>(weights_[idx] * 1024.0f);
+        }
     }
 
     void vectorized_hash(const uint8_t* data, size_t len,
-                        uint32_t* hashes[4]) const {
-        for (size_t i = 0; i < 4; ++i) {
-            hashes[i] = arena_.allocate<uint32_t>(len);
-        }
-
-        for (size_t ctx_idx = 0; ctx_idx < 4; ++ctx_idx) {
+                         std::array<uint32_t*, CONTEXT_COUNT>& hashes) const {
+        for (size_t ctx_idx = 0; ctx_idx < CONTEXT_COUNT; ++ctx_idx) {
+            hashes[ctx_idx] = arena_.allocate<uint32_t>(len);
             size_t ctx_size = CONTEXT_SIZES[ctx_idx];
 
+            uint32_t h = 2166136261U;
             for (size_t i = 0; i < len; ++i) {
-                if (i < ctx_size) {
-                    hashes[ctx_idx][i] = 0;
-                    continue;
+                h ^= data[i];
+                h *= 16777619U;
+
+                uint32_t window_h = h;
+                if (i >= ctx_size) {
+                    window_h ^= (static_cast<uint32_t>(data[i - ctx_size]) << (i % 13));
                 }
 
-                uint32_t h = 2166136261U;
-                for (size_t j = i - ctx_size; j < i; ++j) {
-                    h ^= data[j];
-                    h *= 16777619U;
-                }
-                hashes[ctx_idx][i] = FibonacciHasher::hash(h, 16384);
+                hashes[ctx_idx][i] = FibonacciHasher::hash(window_h, TABLE_SIZE);
             }
         }
     }
 
-    void predict_batch(const uint8_t* data, size_t len,
-                      uint8_t* ranks, uint8_t* qprobs) {
-        uint32_t* hashes[4];
-        vectorized_hash(data, len, hashes);
-
-        for (size_t i = 0; i < len; ++i) {
-            uint8_t mixed_probs[256] = {0};
-
-            for (size_t ctx = 0; ctx < 4; ++ctx) {
-                uint32_t h = hashes[ctx][i];
-                const uint8_t* probs = tables_[ctx].lookup(h);
-
-                if (probs) {
-                    for (size_t j = 0; j < 256; ++j) {
-                        uint16_t weighted = static_cast<uint16_t>(probs[j]) * weights_[ctx];
-                        mixed_probs[j] += static_cast<uint8_t>(weighted >> 8);
-                    }
-                } else {
-                    for (size_t j = 0; j < 256; ++j) {
-                        mixed_probs[j] += weights_[ctx];
-                    }
-                }
+    void predict(const std::array<uint32_t*, CONTEXT_COUNT>& hashes, size_t pos, uint32_t* mixed_probs) const {
+        for (size_t offset = 0; offset < TOTAL_GQE_STATES; offset += 8) {
+            __m256i accumulator = _mm256_setzero_si256();
+            for (size_t ctx = 0; ctx < CONTEXT_COUNT; ++ctx) {
+                const uint8_t* p = tables_[ctx][hashes[ctx][pos]].qprobs.data();
+                __m256i probs = _mm256_cvtepu8_epi32(_mm_loadu_si128(reinterpret_cast<const __m128i*>(&p[offset])));
+                __m256i weight = _mm256_set1_epi32(weight_fixed_[ctx]);
+                accumulator = _mm256_add_epi32(accumulator, _mm256_mullo_epi32(probs, weight));
             }
-
-            uint8_t actual = data[i];
-            uint8_t actual_prob = mixed_probs[actual];
-            uint8_t rank = 0;
-            for (size_t j = 0; j < 256; ++j) {
-                if (mixed_probs[j] > actual_prob) rank++;
-                else if (mixed_probs[j] == actual_prob && j < actual) rank++;
-            }
-
-            ranks[i] = rank;
-            qprobs[i] = actual_prob;
+            _mm256_storeu_si256(reinterpret_cast<__m256i*>(&mixed_probs[offset]), accumulator);
         }
     }
 
-    void train(const uint8_t* data, size_t len) {
-        uint32_t* hashes[4];
-        vectorized_hash(data, len, hashes);
-
-        // This is a large allocation, we might want to use a different approach
-        // for a real implementation, but for parity it matches.
-        auto counts = std::make_unique<std::array<std::array<uint32_t, 256>, 16384>[]>(4);
-
-        for (size_t i = 0; i < len; ++i) {
-            uint8_t actual = data[i];
-            for (size_t ctx = 0; ctx < 4; ++ctx) {
-                uint32_t h = hashes[ctx][i];
-                counts[ctx][h][actual]++;
+    void update(const std::array<uint32_t*, CONTEXT_COUNT>& hashes, size_t pos, uint8_t actual) {
+        for (size_t ctx = 0; ctx < CONTEXT_COUNT; ++ctx) {
+            uint32_t idx = hashes[ctx][pos];
+            if (!is_hot_[ctx].test(idx)) {
+                is_hot_[ctx].set(idx);
+                hot_indices_[ctx].push_back(idx);
             }
-        }
-
-        for (size_t ctx = 0; ctx < 4; ++ctx) {
-            for (size_t h = 0; h < 16384; ++h) {
-                uint32_t total = 0;
-                for (uint32_t c : counts[ctx][h]) total += c;
-
-                if (total > 0) {
-                    uint8_t probs[256];
-                    for (size_t b = 0; b < 256; ++b) {
-                        float prob = (counts[ctx][h][b] + 1.0f) / (total + 256.0f);
-                        probs[b] = static_cast<uint8_t>(prob * 255.0f);
-                    }
-                    tables_[ctx].update(h, probs);
-                }
-            }
+            tables_[ctx][idx].update_counts(actual);
         }
     }
+
+    void refresh() {
+        for (size_t ctx = 0; ctx < CONTEXT_COUNT; ++ctx) {
+            for (uint32_t idx : hot_indices_[ctx]) {
+                tables_[ctx][idx].refresh_qprobs();
+                is_hot_[ctx].reset(idx);
+            }
+            hot_indices_[ctx].clear();
+        }
+    }
+
+    void train(const uint8_t* data, size_t len) {}
+    void predict_batch(const uint8_t* data, size_t len, uint8_t* ranks, uint8_t* qprobs) {}
 };
 
 } // namespace gqe

@@ -14,3 +14,17 @@ dist/
 .cache
 .pytest_cache/
 
+# Binaries and executables
+benchmark
+test_suite
+test_minimal
+test_minimal_intrinsic
+*.o
+*.a
+*.lib
+*.exe
+*.out
+/src/benchmark
+/tests/test_suite
+/Examples/test_minimal
+/Examples/test_minimal_intrinsic
