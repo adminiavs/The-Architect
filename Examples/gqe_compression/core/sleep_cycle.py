@@ -321,8 +321,13 @@ class SleepCycle:
             
             # Golden ratio weighting: favor the more-used node
             total = keep_usage + merge_usage
-            keep_weight = (keep_usage + GOLDEN_MERGE_RATIO * merge_usage) / total
-            merge_weight = 1 - keep_weight
+            if total > 0:
+                keep_weight = (keep_usage + GOLDEN_MERGE_RATIO * merge_usage) / total
+                merge_weight = 1 - keep_weight
+            else:
+                # If both have zero usage, use equal weighting
+                keep_weight = 0.5
+                merge_weight = 0.5
             
             embeddings[keep_idx] = (
                 keep_weight * embeddings[keep_idx] + 

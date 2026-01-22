@@ -144,8 +144,8 @@ def analyze_fibonacci_word_properties(fib_word: str) -> dict:
     def check_period(s, period):
         for i in range(len(s) - period):
             if s[i] != s[i + period]:
-                return False
-        return True
+                assert False, "Test failed"
+        assert True
     
     # Test small periods
     periodic = False

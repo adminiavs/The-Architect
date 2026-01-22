@@ -157,7 +157,7 @@ def test_lossless_with_sleep():
     
     print("=" * 60)
     
-    return passed
+    assert passed
 
 
 if __name__ == "__main__":

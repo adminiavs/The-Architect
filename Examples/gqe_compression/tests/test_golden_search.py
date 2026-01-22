@@ -151,7 +151,7 @@ def test_compression_integration():
     
     start = time.perf_counter()
     singularity = batcher.build_singularity(test_bytes)
-
+    
     all_indices_std = []
     for frame in batcher.process_frames(test_bytes, singularity):
         all_indices_std.append(frame.token_indices)

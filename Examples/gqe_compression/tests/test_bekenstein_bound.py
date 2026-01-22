@@ -58,7 +58,7 @@ def test_golden_threshold():
     passed = (not should_cryst_marginal) and should_cryst_golden and should_cryst_first
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed, "Golden threshold test failed"
 
 
 def test_quantization():
@@ -74,7 +74,7 @@ def test_quantization():
     
     if flip is None:
         print("  ERROR: Movement was too small to quantize")
-        return False
+        assert False, "Movement was too small to quantize"
     
     reconstructed = bound.dequantize_movement(flip)
     error = np.linalg.norm(original - reconstructed)

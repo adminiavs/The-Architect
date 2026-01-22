@@ -61,18 +61,18 @@ class GQEDecompressor:
     def decompress(self, compressed: CompressedData) -> Union[str, bytes]:
         """
         Decompress data.
-
+        
         Args:
             compressed: CompressedData object
-
+        
         Returns:
             Reconstructed data (str or bytes depending on original mode)
         """
         mode = compressed.metadata.get('mode', 'word')
-
+        
         if len(compressed.token_sequence) == 0:
             return '' if mode != 'byte' else b''
-
+        
         # V70 BYTE MODE: Direct byte reconstruction
         if mode == 'byte' and len(compressed.vocabulary) == 0:
             # PHASE 9: BYTE-SINGULARITY
@@ -85,10 +85,10 @@ class GQEDecompressor:
         idx_to_token = {}
         for token_str, info in compressed.vocabulary.items():
             idx_to_token[info['index']] = token_str
-
+        
         # Reconstruct token sequence
         tokens = [idx_to_token[idx] for idx in compressed.token_sequence]
-
+        
         # Reconstruct original data based on mode
         if mode == 'byte':
             # Tokens are byte values as strings
@@ -102,7 +102,7 @@ class GQEDecompressor:
         else:
             # Element mode or unknown
             result = ' '.join(str(t) for t in tokens)
-
+        
         return result
     
     def decompress_to_spinors(self, compressed: CompressedData, 

@@ -5,6 +5,12 @@
  * For full SIMD version, see gqe_kernel.hpp
  */
 
+/**
+ * GQE TUTORIAL: Minimal Kernel Implementation
+ *
+ * This file is part of the intro series for understanding the basic axioms.
+ * For the production-grade laser, see include/gqe/kernel.hpp.
+ */
 #pragma once
 
 #include <array>

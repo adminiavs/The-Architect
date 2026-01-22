@@ -93,7 +93,7 @@ def test_consolidation():
     
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_pruning():
@@ -138,7 +138,7 @@ def test_pruning():
     print(f"  Noise removed, useful kept: {passed}")
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_compression():
@@ -197,7 +197,7 @@ def test_compression():
     print(f"  Sufficient pruning and consolidation: {passed}")
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_evolver_integration():
@@ -253,7 +253,7 @@ def test_evolver_integration():
     print(f"  Vocabulary shrunk: {passed}")
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_compressor_integration():
@@ -302,7 +302,7 @@ def test_compressor_integration():
     
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def run_test():

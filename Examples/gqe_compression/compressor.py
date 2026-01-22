@@ -157,10 +157,10 @@ class CompressedData:
         # FOR THE PROTOTYPE: We use the raw sequence to verify lossless first
         # then apply the bit-packer.
         data_stream = bytes(self.token_sequence.astype(np.uint8))
-
+        
         # Apply the final Phason Squeeze (ZLIB is the current shadow proxy)
         compressed_stream = zlib.compress(data_stream, level=9)
-
+        
         # Update checksum
         checksum = zlib.crc32(compressed_stream) & 0xFFFFFFFF
         header_with_checksum = struct.pack('<II', orig_len, checksum)
@@ -1095,7 +1095,7 @@ class CompressedData:
         # 1. Read Header
         # Magic is already checked
         orig_len, checksum = struct.unpack('<II', data[2:10])
-
+        
         # 2. Decompress the Integral
         compressed_data = data[12:]
         data_bytes = zlib.decompress(compressed_data)
@@ -1111,7 +1111,7 @@ class CompressedData:
             'version': 'v70',
             'byte_level': True,
         }
-
+        
         return cls(
             vocabulary={},  # Empty vocabulary - no string tokens
             token_sequence=token_sequence,
@@ -2134,14 +2134,14 @@ class GQECompressor:
     
     HORIZON_THRESHOLD = 233 * 1024
     
-    def __init__(self, window_size: int = 5, tokenize_mode: str = 'auto',
+    def __init__(self, window_size: int = 5, tokenize_mode: str = 'auto', 
                  use_horizon_batching: bool = True, chunk_size: Optional[int] = None,
                  self_learning: bool = False, evolution_state_path: Optional[str] = None,
                  learning_rate: float = 0.01, mutation_rate: float = 0.001,
                  enable_geometric_parallelism: bool = False):
         """
         Initialize compressor.
-
+        
         Args:
             window_size: Co-occurrence window for graph building
             tokenize_mode: Tokenization mode ('auto', 'word', 'char', 'byte')
@@ -2158,12 +2158,12 @@ class GQECompressor:
         self.use_horizon_batching = use_horizon_batching
         self.chunk_size = chunk_size or self.HORIZON_THRESHOLD
         self.enable_geometric_parallelism = enable_geometric_parallelism
-
+        
         # Self-learning configuration
         self.self_learning = self_learning
         self.evolver: Optional[GeometricEvolver] = None
         self.evolution_stats: List[Dict] = []
-
+        
         if self_learning:
             self.evolver = GeometricEvolver(
                 learning_rate=learning_rate,
@@ -2261,7 +2261,7 @@ class GQECompressor:
         
         if len(singularity.vocabulary) == 0:
             return CompressedData({}, np.array([], dtype=np.uint8),
-                                  np.array([]).reshape(0, 4), np.array([]).reshape(0, 4),
+                                  np.array([]).reshape(0, 4), np.array([]).reshape(0, 4), 
                                   np.array([]), {'mode': 'byte', 'original_length': len(data), 'horizon_batched': True, 'version': 'v70'})
         
         # PHASE 9: BYTE-SINGULARITY - Direct byte mapping
@@ -2295,7 +2295,7 @@ class GQECompressor:
         
         # PHASE 9: BYTE-SINGULARITY - No projections needed
         # Bytes map directly to E8 coordinates, no complex projections
-
+        
         metadata = {
             'mode': 'byte',  # Always byte mode for horizon batching
             'original_length': len(data),
@@ -2309,7 +2309,7 @@ class GQECompressor:
             'self_learning': self.self_learning,
             'evolution_stats': {},
         }
-
+        
         return CompressedData(
             vocabulary={},  # Empty vocabulary in byte mode
             token_sequence=token_sequence,  # Direct byte array

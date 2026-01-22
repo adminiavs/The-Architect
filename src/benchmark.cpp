@@ -10,7 +10,7 @@
  * Goal: 10:1 compression ratio on enwik8, 100 MB/s throughput, <256MB RAM
  */
 
-#include "gqe_kernel.hpp"
+#include "../include/gqe/kernel.hpp"
 #include <iostream>
 #include <vector>
 #include <chrono>

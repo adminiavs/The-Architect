@@ -99,7 +99,7 @@ def test_cooccurrence_attraction():
     passed = all(improvements) if improvements else False
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_phason_flip_emergence():
@@ -149,7 +149,7 @@ def test_phason_flip_emergence():
     passed = total_mutations > 0 and embedding_changes.mean() > 0.01
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_fitness_improvement():
@@ -202,7 +202,7 @@ def test_fitness_improvement():
     passed = True  # Soft pass - learning mechanism is working
     print(f"  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_integrated_compression():
@@ -270,7 +270,7 @@ def test_integrated_compression():
     passed = len(concepts) > 0
     print(f"\n  Result: {'PASS' if passed else 'FAIL'}")
     
-    return passed
+    assert passed
 
 
 def test_persistent_learning():
@@ -329,7 +329,7 @@ def test_persistent_learning():
         if os.path.exists(state_path):
             os.remove(state_path)
     
-    return passed
+    assert passed
 
 
 def run_test():

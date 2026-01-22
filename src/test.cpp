@@ -4,7 +4,7 @@
  * Tests basic functionality of the header-only C++20 GQE library.
  */
 
-#include "gqe_kernel.hpp"
+#include "../include/gqe/kernel.hpp"
 #include <iostream>
 #include <vector>
 #include <chrono>

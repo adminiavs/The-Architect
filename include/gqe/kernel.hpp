@@ -1,0 +1,18 @@
+#pragma once
+
+#include "types.hpp"
+#include "constants.hpp"
+#include "e8_lattice.hpp"
+#include "bekenstein_arena.hpp"
+#include "context_mixer.hpp"
+#include "projection.hpp"
+#include "circular_rac.hpp"
+#include "chunker.hpp"
+#include "compressor.hpp"
+#include "toric_error_correction.hpp"
+#include "holographic_encoding.hpp"
+#include "geometric_evolver.hpp"
+#include "sleep_cycle.hpp"
+#include "spectral_action.hpp"
+#include "phi_adic.hpp"
+#include "delta_phi_packer.hpp"

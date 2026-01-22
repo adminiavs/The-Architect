@@ -258,8 +258,17 @@ def compute_laplacian_eigenvectors(G: nx.Graph, k: int = 3) -> Dict[Any, np.ndar
     L = csr_matrix(L, dtype=np.float64)
     
     try:
-        # Get smallest eigenvalues (first is always 0)
-        eigenvalues, eigenvectors = eigsh(L, k=k+1, which='SM')
+        # If k+1 >= n, use dense eigendecomposition to avoid sparse solver warning
+        if k + 1 >= n:
+            from scipy.linalg import eigh
+            L_dense = L.toarray()
+            eigenvalues, eigenvectors = eigh(L_dense)
+            # Take the k+1 smallest
+            eigenvalues = eigenvalues[:k+1]
+            eigenvectors = eigenvectors[:, :k+1]
+        else:
+            # Get smallest eigenvalues (first is always 0)
+            eigenvalues, eigenvectors = eigsh(L, k=k+1, which='SM')
         
         # Skip the first (constant) eigenvector
         coords = eigenvectors[:, 1:k+1]

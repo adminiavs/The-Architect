@@ -146,7 +146,7 @@ class HorizonBatcher:
         total_size = len(data)
         frame_index = 0
         start = 0
-
+        
         while start < total_size:
             target_end = start + self.chunk_size
             if target_end >= total_size:
@@ -155,11 +155,11 @@ class HorizonBatcher:
             else:
                 # Grain-aware boundary detection
                 end = self.find_nearest_grain(data, start, target_end, total_size)
-
+            
             yield frame_index, data[start:end], (start, end)
             start = end
             frame_index += 1
-
+    
     def find_nearest_grain(self, data: bytes, start: int, target_end: int, total_size: int) -> int:
         """
         Find the nearest token boundary (whitespace) to avoid splitting words.
@@ -206,7 +206,7 @@ class HorizonBatcher:
             if byte_key not in vocabulary:
                 vocabulary[byte_key] = byte  # Map to byte value itself
             byte_sequences.append(byte_key)
-
+        
         return vocabulary, byte_sequences
     
     def build_singularity(self, data: bytes) -> GlobalSingularity:
@@ -219,15 +219,15 @@ class HorizonBatcher:
         # Build byte-level vocabulary
         vocabulary, byte_sequences = self._build_global_vocabulary(data)
         vocab_size = len(vocabulary)
-
+        
         if vocab_size == 0:
             return GlobalSingularity({}, np.array([]).reshape(0, 8), np.array([]), self.e8_roots)
-
+        
         # Byte-singularity: Embeddings for all 256 possible bytes
         # Even if only some bytes appear in data, we pre-allocate for all
         embeddings_8d = np.zeros((256, 8), dtype=np.float32)
         phases = np.zeros(256, dtype=np.float32)
-
+        
         # Pre-compute embeddings for all possible byte values (0-255)
         for byte_val in range(256):
             # Map byte value to 8D coordinates using simple trigonometric mapping
@@ -243,7 +243,7 @@ class HorizonBatcher:
 
             # Phase based on byte value and golden ratio
             phases[byte_val] = (byte_val * PHI) % (2 * np.pi)
-
+        
         return GlobalSingularity(
             vocabulary=vocabulary,
             embeddings_8d=embeddings_8d,
@@ -251,7 +251,7 @@ class HorizonBatcher:
             e8_roots=self.e8_roots,
         )
     
-    def process_frames(self,
+    def process_frames(self, 
                        data: bytes,
                        singularity: GlobalSingularity) -> Iterator[HorizonFrame]:
         """
@@ -262,10 +262,10 @@ class HorizonBatcher:
         vocab_size = len(singularity.vocabulary)
         if vocab_size == 0:
             return
-
+        
         # Byte-singularity: Direct byte -> vocabulary index mapping
         byte_to_idx = singularity.vocabulary
-
+        
         for frame_idx, chunk_bytes, byte_range in self._chunk_data(data):
             # Byte-singularity: Each byte becomes a direct index
             indices = np.zeros(len(chunk_bytes), dtype=np.uint32)
@@ -273,7 +273,7 @@ class HorizonBatcher:
             for i, byte in enumerate(chunk_bytes):
                 byte_key = bytes([byte])
                 indices[i] = byte_to_idx.get(byte_key, 0)
-
+            
             yield HorizonFrame(
                 frame_index=frame_idx,
                 token_indices=indices,

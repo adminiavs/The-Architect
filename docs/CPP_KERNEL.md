@@ -10,6 +10,7 @@ The GQE has ascended from its Python prototype to a header-only, SIMD-optimized 
 
 #### 1. The Spinor8D - One Bit of Spacetime
 ```cpp
+// include/gqe/types.hpp
 struct alignas(32) Spinor8D {
     float pos[8];      // The E8 Root Coordinates
     float phase;       // The Internal Twist
@@ -22,6 +23,7 @@ struct alignas(32) Spinor8D {
 
 #### 2. The E8 Lattice - The Hard Drive of the Universe
 ```cpp
+// include/gqe/e8_lattice.hpp
 template<size_t N = 240>
 struct E8Lattice {
     static constexpr std::array<Spinor8D, N> roots = generate_roots();
@@ -32,8 +34,9 @@ struct E8Lattice {
 
 #### 3. The Bekenstein Arena - Memory Without Entropy
 ```cpp
+// include/gqe/bekenstein_arena.hpp
 class BekensteinArena {
-    alignas(64) std::array<uint8_t, 256*1024> buffer_;
+    std::unique_ptr<uint8_t[]> buffer_;
 };
 ```
 - **Physics**: Mimics the Universal Refresh Rate
@@ -42,6 +45,7 @@ class BekensteinArena {
 
 #### 4. The Geometric Parallel Mixer - SIMD Synapse
 ```cpp
+// include/gqe/context_mixer.hpp
 class GeometricParallelMixer {
     // Fibonacci Hashing with Golden Ratio
     // SIMD-optimized context mixing
@@ -54,9 +58,10 @@ class GeometricParallelMixer {
 
 #### 5. The Coxeter Projection - 8D to 4D
 ```cpp
+// include/gqe/projection.hpp
 class CoxeterProjection {
     static inline Vector4D project(const Spinor8D& bulk) {
-        return BulkMatrix * bulk.pos;
+        // Full Coxeter projection with phason extraction
     }
 };
 ```
@@ -65,6 +70,7 @@ class CoxeterProjection {
 
 #### 6. Circular RAC - Arithmetic Without Division
 ```cpp
+// include/gqe/circular_rac.hpp
 class CircularRAC {
     // Bit-shifting instead of division
     // Wraps the circle at hardware level

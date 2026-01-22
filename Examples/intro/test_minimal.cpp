@@ -3,6 +3,11 @@
  * Demonstrates core concepts without external dependencies
  */
 
+/**
+ * GQE TUTORIAL: Minimal Axiomatic Test
+ *
+ * A simple demonstration of the mathematical foundations.
+ */
 #include "gqe_kernel_minimal.hpp"
 #include <iostream>
 #include <vector>

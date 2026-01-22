@@ -145,6 +145,64 @@ class PhiAdicNumber:
         
         return cls(digits=digits, fractional_digits=fractional_digits, negative=negative)
     
+    def to_compact_bits(self) -> Tuple[List[int], int]:
+        """
+        Convert to minimal bit representation without padding.
+        
+        THE PHYSICS:
+        This is the "Pixelation" of the Singularity's continuous output.
+        Each bit represents a phason flip - a discrete step in the E8 lattice.
+        
+        Format (variable length):
+        - 1 bit: sign
+        - Integer digits (raw, no count header)
+        - Fractional digits (raw)
+        
+        The digit counts are stored externally or inferred from context.
+        
+        Returns:
+            (bit_list, bit_count) for precise packing.
+        """
+        bits = []
+        
+        # 1. Sign bit
+        bits.append(1 if self.negative else 0)
+        
+        # 2. Integer digits (reversed for LSB-first storage)
+        for d in self.digits:
+            bits.append(d)
+        
+        # 3. Fractional digits
+        for d in self.fractional_digits:
+            bits.append(d)
+        
+        return bits, len(bits)
+    
+    @classmethod
+    def from_compact_bits(cls, bits: List[int], int_count: int, frac_count: int) -> 'PhiAdicNumber':
+        """
+        Reconstruct from compact bit representation.
+        
+        Args:
+            bits: The raw bit list
+            int_count: Number of integer digits
+            frac_count: Number of fractional digits
+        """
+        idx = 0
+        
+        # 1. Sign bit
+        negative = bits[idx] == 1
+        idx += 1
+        
+        # 2. Integer digits
+        digits = bits[idx:idx + int_count] if int_count > 0 else [0]
+        idx += int_count
+        
+        # 3. Fractional digits
+        fractional_digits = bits[idx:idx + frac_count] if frac_count > 0 else []
+        
+        return cls(digits=digits, fractional_digits=fractional_digits, negative=negative)
+    
     def __repr__(self) -> str:
         sign = '-' if self.negative else ''
         int_str = ''.join(str(d) for d in reversed(self.digits)) or '0'
