@@ -7,7 +7,7 @@
  * Header-only C++20 library for high-performance data compression
  * using geometric quasicrystal encoding.
  *
- * Requirements: C++20, Eigen3, AVX-512/AVX2 support
+ * Requirements: C++20, AVX-512/AVX2 support (no external dependencies)
  * Compiler: -O3 -march=native
  *
  * Author: The Architect
@@ -28,16 +28,40 @@
 #include <cstring>
 #include <string_view>
 #include <type_traits>
-
-// Eigen for high-speed 8D vector operations
-#include <Eigen/Dense>
-#include <Eigen/Geometry>
+#include <cstdint>
+#include <memory>
 
 // SIMD intrinsics
 #include <immintrin.h>
 
 // Constants
 namespace gqe {
+
+    // core/simple_math.hpp - The Architect's Intrinsic Math
+    struct Vector8D {
+        std::array<float, 8> data;
+
+        // The Physics: Norm calculation in the E8 Lattice
+        float norm() const {
+            float sum = 0;
+            for(float x : data) sum += x * x;
+            return std::sqrt(sum);
+        }
+
+        // The Logic: Vector Addition (Superposition)
+        Vector8D operator+(const Vector8D& other) const {
+            Vector8D res;
+            for(int i=0; i<8; ++i) res.data[i] = data[i] + other.data[i];
+            return res;
+        }
+
+        // The Geometry: Inner Product (The Handshake)
+        float dot(const Vector8D& other) const {
+            float res = 0;
+            for(int i=0; i<8; ++i) res = std::fma(data[i], other.data[i], res);
+            return res;
+        }
+    };
 
 constexpr float PHI = std::numbers::phi_v<float>;  // Golden ratio for Fibonacci hashing
 constexpr float PHI_INV = PHI - 1.0f;             // Inverse golden ratio
@@ -158,11 +182,15 @@ public:
  */
 class BekensteinArena {
 private:
-    alignas(64) std::array<uint8_t, BEKENSTEIN_BUFFER> buffer_;
+    std::unique_ptr<uint8_t[]> buffer_;
+    size_t buffer_size_;
     size_t offset_;
 
 public:
-    BekensteinArena() : offset_(0) {}
+    BekensteinArena(size_t size = BEKENSTEIN_BUFFER)
+        : buffer_(std::make_unique<uint8_t[]>(size))
+        , buffer_size_(size)
+        , offset_(0) {}
 
     // Reset for new frame (no deallocation)
     inline void reset() { offset_ = 0; }
@@ -176,7 +204,7 @@ public:
         size_t bytes_needed = count * sizeof(T);
         size_t aligned_offset = (offset_ + alignof(T) - 1) & ~(alignof(T) - 1);
 
-        if (aligned_offset + bytes_needed > BEKENSTEIN_BUFFER) {
+        if (aligned_offset + bytes_needed > buffer_size_) {
             throw std::bad_alloc(); // Frame too large for arena
         }
 
@@ -187,7 +215,7 @@ public:
 
     // Get remaining space
     inline size_t remaining() const {
-        return BEKENSTEIN_BUFFER - offset_;
+        return buffer_size_ - offset_;
     }
 };
 
@@ -310,47 +338,47 @@ public:
         }
     }
 
-    // SIMD-optimized prediction
+    // Prediction with intrinsic math (no external SIMD dependencies)
     void predict_batch(const uint8_t* data, size_t len,
                       uint8_t* ranks, uint8_t* qprobs) {
         // Get all context hashes
         uint32_t* hashes[4];
         vectorized_hash(data, len, hashes);
 
-        // Process in SIMD batches
+        // Process each position
         for (size_t i = 0; i < len; ++i) {
-            // Mix predictions from all contexts
-            __m256i mixed_probs = _mm256_setzero_si256();
+            // Mix predictions from all contexts using intrinsic math
+            uint8_t mixed_probs[256] = {0};
 
             for (size_t ctx = 0; ctx < 4; ++ctx) {
                 uint32_t h = hashes[ctx][i];
                 const uint8_t* probs = tables_[ctx].lookup(h);
 
                 if (probs) {
-                    // Load probabilities and weight them
-                    __m256i prob_vec = _mm256_loadu_si256(
-                        reinterpret_cast<const __m256i*>(probs));
-                    __m256i weight_vec = _mm256_set1_epi8(weights_[ctx]);
-                    __m256i weighted = _mm256_mullo_epi8(prob_vec, weight_vec);
-                    mixed_probs = _mm256_add_epi8(mixed_probs, weighted);
+                    // Weight and accumulate probabilities
+                    for (size_t j = 0; j < 256; ++j) {
+                        // Fixed-point multiplication: (prob * weight) >> 8
+                        uint16_t weighted = static_cast<uint16_t>(probs[j]) * weights_[ctx];
+                        mixed_probs[j] += static_cast<uint8_t>(weighted >> 8);
+                    }
+                } else {
+                    // Uniform distribution for missing context
+                    for (size_t j = 0; j < 256; ++j) {
+                        mixed_probs[j] += weights_[ctx];
+                    }
                 }
             }
 
             // Find rank of actual byte
             uint8_t actual = data[i];
-            uint8_t actual_prob = 0;
-
-            // Extract probabilities (this is simplified - real implementation
-            // would need proper rank calculation)
-            alignas(32) uint8_t mixed_array[256];
-            _mm256_store_si256(reinterpret_cast<__m256i*>(mixed_array), mixed_probs);
-
-            actual_prob = mixed_array[actual];
+            uint8_t actual_prob = mixed_probs[actual];
 
             // Calculate rank (count bytes with higher probability)
             uint8_t rank = 0;
             for (size_t j = 0; j < 256; ++j) {
-                if (mixed_array[j] > actual_prob) rank++;
+                if (mixed_probs[j] > actual_prob) rank++;
+                // Handle ties by checking if equal bytes come after
+                else if (mixed_probs[j] == actual_prob && j < actual) rank++;
             }
 
             ranks[i] = rank;
@@ -399,26 +427,29 @@ public:
  */
 class CoxeterProjection {
 private:
-    static constexpr Eigen::Matrix<float, 4, 8> projection_matrix_ = []() {
-        Eigen::Matrix<float, 4, 8> m;
-        // Coxeter projection from 8D to 4D
-        // This is a simplified version - real Coxeter projection is more complex
-        m << 1, 0, 0, 0, 0, 0, 0, 0,
-             0, 1, 0, 0, 0, 0, 0, 0,
-             0, 0, 1, 0, 0, 0, 0, 0,
-             0, 0, 0, 1, 0, 0, 0, 0;
-        return m;
-    }();
+    // Simple 4x8 projection matrix (identity for first 4 dimensions)
+    static constexpr std::array<std::array<float, 8>, 4> projection_matrix_ = {{
+        {1, 0, 0, 0, 0, 0, 0, 0},  // x' = x
+        {0, 1, 0, 0, 0, 0, 0, 0},  // y' = y
+        {0, 0, 1, 0, 0, 0, 0, 0},  // z' = z
+        {0, 0, 0, 1, 0, 0, 0, 0}   // w' = w
+    }};
 
 public:
-    // Project 8D spinor to 4D
+    // Project 8D spinor to 4D using custom matrix multiplication
     static inline Vector4D project(const Spinor8D& spinor) {
-        Eigen::Vector<float, 8> vec;
-        std::memcpy(vec.data(), spinor.pos, 8 * sizeof(float));
+        Vector4D result;
 
-        Eigen::Vector<float, 4> result = projection_matrix_ * vec;
+        // Matrix-vector multiplication: 4x8 * 8x1 = 4x1
+        for (int row = 0; row < 4; ++row) {
+            float sum = 0.0f;
+            for (int col = 0; col < 8; ++col) {
+                sum += projection_matrix_[row][col] * spinor.pos[col];
+            }
+            result.coords[row] = sum;
+        }
 
-        return Vector4D(result[0], result[1], result[2], result[3]);
+        return result;
     }
 };
 

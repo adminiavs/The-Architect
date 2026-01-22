@@ -22,8 +22,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffast-math -funroll-loops")
 # Warning flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 
-# Find required dependencies
-find_package(Eigen3 3.4 REQUIRED)
+# No external dependencies - pure C++20 header-only library
 
 # Create the main library (header-only)
 add_library(gqe_kernel INTERFACE)
@@ -31,7 +30,7 @@ target_include_directories(gqe_kernel INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
 )
-target_link_libraries(gqe_kernel INTERFACE Eigen3::Eigen)
+# No external dependencies - pure intrinsic math
 
 # Create benchmark executable
 add_executable(gqe_benchmark benchmark.cpp)
