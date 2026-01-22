@@ -54,9 +54,9 @@ def test_golden_encoder_roundtrip():
         print(f"  Vocab size {vocab_size:,}: Round-trip={'PASS' if match else 'FAIL'}, Bijective={'PASS' if unique_encoded else 'FAIL'}")
         
         if not match or not unique_encoded:
-            return False
+            assert False, "Test failed"
     
-    return True
+    assert True
 
 
 def test_golden_distribution():
@@ -88,7 +88,8 @@ def test_golden_distribution():
     spread = golden_indices.max() - golden_indices.min()
     print(f"  Spread: {spread} / {vocab_size} ({spread/vocab_size*100:.1f}%)")
     
-    return spread > vocab_size * 0.9  # At least 90% spread
+    # At least 90% spread
+    assert spread > vocab_size * 0.9, f"Spread {spread} is less than 90% of {vocab_size}"
 
 
 def test_vectorized_performance():
@@ -127,7 +128,7 @@ def test_vectorized_performance():
     print(f"  Golden lookup:   {gold_time*1000:.2f} ms")
     print(f"  Throughput: {n_tokens/std_time/1e6:.1f}M vs {n_tokens/gold_time/1e6:.1f}M tokens/s")
     
-    return True
+    assert True
 
 
 def test_compression_integration():
@@ -149,10 +150,10 @@ def test_compression_integration():
     batcher = HorizonBatcher(chunk_size=1024, window_size=5)
     
     start = time.perf_counter()
-    singularity = batcher.build_singularity(test_bytes, mode='word')
-    
+    singularity = batcher.build_singularity(test_bytes)
+
     all_indices_std = []
-    for frame in batcher.process_frames(test_bytes, singularity, mode='word'):
+    for frame in batcher.process_frames(test_bytes, singularity):
         all_indices_std.append(frame.token_indices)
     all_indices_std = np.concatenate(all_indices_std)
     std_time = time.perf_counter() - start
@@ -181,7 +182,7 @@ def test_compression_integration():
     print(f"    Golden:   {len(gold_compressed):,} bytes")
     print(f"    Ratio: {len(gold_compressed)/len(std_compressed):.3f}x")
     
-    return True
+    assert True
 
 
 def run_test():

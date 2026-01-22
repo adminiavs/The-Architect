@@ -35,8 +35,11 @@ import struct
 
 from .phi_adic import PHI, PHI_INV
 from .e8_lattice import Spinor, generate_e8_roots
-from .tda import tokenize, build_cooccurrence_graph, Token
 from .fibonacci_hash import GoldenIndexEncoder
+
+# Phase 9: Byte-Singularity - Remove all string overhead
+# No more tokenize, Token, or string-based vocabulary
+# Everything operates at pure byte level
 
 
 # Fibonacci numbers for chunk sizes (in bytes)
@@ -129,67 +132,118 @@ class HorizonBatcher:
         self.closest_fibonacci = closest_fib
     
     def _chunk_data(self, data: bytes) -> Iterator[Tuple[int, bytes, Tuple[int, int]]]:
+        """
+        Grain-Aware Chunking: Always respect token boundaries to prevent Boundary Entropy.
+
+        THE PHYSICS: A frame must contain complete geometric cycles.
+        The Singularity does not "cut" a spinor in half.
+
+        Strategy:
+        1. Search forward for nearest whitespace (preferred)
+        2. If none found, search backward for nearest whitespace
+        3. Only as last resort, split at exact chunk boundary (should be extremely rare)
+        """
         total_size = len(data)
         frame_index = 0
         start = 0
+
         while start < total_size:
-            end = min(start + self.chunk_size, total_size)
+            target_end = start + self.chunk_size
+            if target_end >= total_size:
+                # Last chunk - take everything remaining
+                end = total_size
+            else:
+                # Grain-aware boundary detection
+                end = self.find_nearest_grain(data, start, target_end, total_size)
+
             yield frame_index, data[start:end], (start, end)
             start = end
             frame_index += 1
+
+    def find_nearest_grain(self, data: bytes, start: int, target_end: int, total_size: int) -> int:
+        """
+        Find the nearest token boundary (whitespace) to avoid splitting words.
+
+        Search Strategy:
+        1. Forward search: Look for whitespace after target_end (up to 4KB)
+        2. Backward search: If forward fails, look for whitespace before target_end
+        3. Fallback: Exact split (only if no whitespace found in 8KB window)
+        """
+        # Define token boundary characters (whitespace and punctuation)
+        boundaries = (b' ', b'\n', b'\r', b'\t', b'.', b',', b';', b':', b'!', b'?', b'-', b'_')
+
+        # Strategy 1: Forward search for boundary
+        forward_limit = min(target_end + 4096, total_size)  # 4KB forward search
+        for i in range(target_end, forward_limit):
+            if data[i:i+1] in boundaries:
+                return i + 1  # Include the boundary character
+
+        # Strategy 2: Backward search for boundary (if forward failed)
+        backward_limit = max(start, target_end - 4096)  # 4KB backward search
+        for i in range(target_end - 1, backward_limit - 1, -1):
+            if data[i:i+1] in boundaries:
+                return i + 1  # Include the boundary character
+
+        # Strategy 3: Emergency fallback - exact split
+        # This should be extremely rare with proper boundary detection
+        print(f"  [WARNING] No token boundary found within 8KB window around position {target_end}")
+        print(f"  [WARNING] Performing emergency split - may cause boundary entropy")
+        return target_end
     
-    def _build_global_vocabulary(self, data: bytes, mode: str = 'word') -> Tuple[Dict[str, int], List[Token]]:
-        if isinstance(data, bytes):
-            try:
-                text = data.decode('utf-8')
-            except UnicodeDecodeError:
-                text = None
-        else:
-            text = data
-        
-        all_tokens = tokenize(text if text is not None else data, mode=mode if text is not None else 'byte')
-        
+    def _build_global_vocabulary(self, data: bytes) -> Tuple[Dict[bytes, int], List[bytes]]:
+        """
+        PHASE 9: BYTE-SINGULARITY
+        Build vocabulary where each byte maps to its own value.
+        No sequential indices - direct byte-to-byte mapping.
+        """
+        # Byte-singularity: Each byte maps to itself (0-255)
         vocabulary = {}
-        for token in all_tokens:
-            if token.value not in vocabulary:
-                vocabulary[token.value] = len(vocabulary)
-        
-        return vocabulary, all_tokens
+        byte_sequences = []
+
+        # For each unique byte, map it to its own value
+        for byte in data:
+            byte_key = bytes([byte])
+            if byte_key not in vocabulary:
+                vocabulary[byte_key] = byte  # Map to byte value itself
+            byte_sequences.append(byte_key)
+
+        return vocabulary, byte_sequences
     
-    def build_singularity(self, data: bytes, mode: str = 'word') -> GlobalSingularity:
-        from .tda import build_cooccurrence_graph, compute_laplacian_eigenvectors
-        
-        # Build vocabulary
-        vocabulary, all_tokens = self._build_global_vocabulary(data, mode)
+    def build_singularity(self, data: bytes) -> GlobalSingularity:
+        """
+        PHASE 9: BYTE-SINGULARITY
+        The simplest possible singularity - pure byte-level processing.
+        No tokenization, no spectral embedding, no complex graphs.
+        Just the 256 bytes that form the foundation of all data.
+        """
+        # Build byte-level vocabulary
+        vocabulary, byte_sequences = self._build_global_vocabulary(data)
         vocab_size = len(vocabulary)
-        
+
         if vocab_size == 0:
             return GlobalSingularity({}, np.array([]).reshape(0, 8), np.array([]), self.e8_roots)
-        
-        # For embedding, we sample tokens to avoid O(N²) memory
-        sample_size = min(len(all_tokens), max(1000, int(np.sqrt(len(all_tokens)) * 10)))
-        sample_tokens = all_tokens[:sample_size]
-        
-        # Build co-occurrence graph on sample
-        sample_graph = build_cooccurrence_graph(sample_tokens, self.window_size)
-        
-        # Compute spectral embedding
-        laplacian_coords = compute_laplacian_eigenvectors(sample_graph, k=8)
-        
-        # Map coordinates to vocabulary
-        embeddings_8d = np.zeros((vocab_size, 8), dtype=np.float32)
-        phases = np.zeros(vocab_size, dtype=np.float32)
-        
-        for node, coords in laplacian_coords.items():
-            if node in vocabulary:
-                idx = vocabulary[node]
-                if len(coords) < 8:
-                    padded = np.zeros(8)
-                    padded[:len(coords)] = coords
-                    coords = padded
-                embeddings_8d[idx] = coords[:8]
-                phases[idx] = (idx * PHI) % (2 * np.pi)
-        
+
+        # Byte-singularity: Embeddings for all 256 possible bytes
+        # Even if only some bytes appear in data, we pre-allocate for all
+        embeddings_8d = np.zeros((256, 8), dtype=np.float32)
+        phases = np.zeros(256, dtype=np.float32)
+
+        # Pre-compute embeddings for all possible byte values (0-255)
+        for byte_val in range(256):
+            # Map byte value to 8D coordinates using simple trigonometric mapping
+            angle = (byte_val / 255.0) * 2 * np.pi
+            embeddings_8d[byte_val, 0] = np.cos(angle)          # x-coordinate
+            embeddings_8d[byte_val, 1] = np.sin(angle)          # y-coordinate
+            embeddings_8d[byte_val, 2] = np.cos(2 * angle)      # Higher harmonics
+            embeddings_8d[byte_val, 3] = np.sin(2 * angle)
+            embeddings_8d[byte_val, 4] = np.cos(3 * angle)
+            embeddings_8d[byte_val, 5] = np.sin(3 * angle)
+            embeddings_8d[byte_val, 6] = byte_val / 127.5 - 1  # Linear component
+            embeddings_8d[byte_val, 7] = (byte_val % 16) / 8 - 1  # Bit pattern component
+
+            # Phase based on byte value and golden ratio
+            phases[byte_val] = (byte_val * PHI) % (2 * np.pi)
+
         return GlobalSingularity(
             vocabulary=vocabulary,
             embeddings_8d=embeddings_8d,
@@ -197,40 +251,29 @@ class HorizonBatcher:
             e8_roots=self.e8_roots,
         )
     
-    def process_frames(self, 
+    def process_frames(self,
                        data: bytes,
-                       singularity: GlobalSingularity,
-                       mode: str = 'word') -> Iterator[HorizonFrame]:
+                       singularity: GlobalSingularity) -> Iterator[HorizonFrame]:
         """
-        Process data into Horizon Frames.
-        
-        Uses Golden Search optimization for vocabulary lookup.
+        PHASE 9: BYTE-SINGULARITY PROCESSING
+        The ultimate simplification - direct byte-to-index mapping.
+        No tokenization, no string processing, pure byte-level efficiency.
         """
-        # Pre-build lookup array for O(1) numpy indexing (Golden Search)
         vocab_size = len(singularity.vocabulary)
         if vocab_size == 0:
             return
-        
-        # Create a direct token -> index array for fast lookup
-        # This leverages numpy's vectorized operations
-        token_to_idx = singularity.vocabulary
-        
+
+        # Byte-singularity: Direct byte -> vocabulary index mapping
+        byte_to_idx = singularity.vocabulary
+
         for frame_idx, chunk_bytes, byte_range in self._chunk_data(data):
-            if isinstance(chunk_bytes, bytes):
-                try:
-                    chunk_text = chunk_bytes.decode('utf-8')
-                    chunk_tokens = tokenize(chunk_text, mode='word')
-                except UnicodeDecodeError:
-                    chunk_tokens = tokenize(chunk_bytes, mode='byte')
-            else:
-                chunk_tokens = tokenize(chunk_bytes, mode='word')
-            
-            if not chunk_tokens:
-                continue
-            
-            # Vectorized lookup using pre-built array
-            indices = np.array([token_to_idx.get(t.value, 0) for t in chunk_tokens], dtype=np.uint32)
-            
+            # Byte-singularity: Each byte becomes a direct index
+            indices = np.zeros(len(chunk_bytes), dtype=np.uint32)
+
+            for i, byte in enumerate(chunk_bytes):
+                byte_key = bytes([byte])
+                indices[i] = byte_to_idx.get(byte_key, 0)
+
             yield HorizonFrame(
                 frame_index=frame_idx,
                 token_indices=indices,
