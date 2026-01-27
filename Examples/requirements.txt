@@ -1,0 +1,11 @@
+# GQE Verification Scripts Dependencies
+#
+# Install with: pip install -r Examples/requirements.txt
+
+numpy>=1.21.0          # Numerical computations for E8 geometry
+matplotlib>=3.5.0      # Visualization of Koide ratio and spectral functions
+scipy>=1.7.0           # Additional mathematical functions (optional)
+
+# Optional dependencies for advanced verification
+# sympy>=1.9.0         # Symbolic mathematics for algebraic verification
+# plotly>=5.0.0        # Interactive 3D visualizations
